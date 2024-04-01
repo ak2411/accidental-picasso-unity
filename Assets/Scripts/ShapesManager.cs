@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShapesManager : MonoBehaviour
 {
     public List<GameObject> createdShapes = new List<GameObject>();
+    public Color selectedColor = Color.red;
     public bool addShape = false;
 
     // Start is called before the first frame update
