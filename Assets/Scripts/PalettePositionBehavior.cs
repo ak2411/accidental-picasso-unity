@@ -83,5 +83,10 @@ namespace AccidentalPicasso.UI.Palette
             }
 
         }
+
+        public IHand GetDominantHand()
+        {
+            return LeftHand.IsDominantHand ? LeftHand : RightHand;
+        }
     }
 }
