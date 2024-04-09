@@ -27,7 +27,7 @@ namespace AccidentalPicasso.UI.Palette
     /// Displays palette at the non-dominant hand with a specified offset
     /// </summary>
     ///
-    public class MatchNonDominantPalmWorldSpaceTransform : MonoBehaviour
+    public class PalettePositionBehavior : MonoBehaviour
     {
         [SerializeField, Interface(typeof(IHand))]
         private Object _leftHand;

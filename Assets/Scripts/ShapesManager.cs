@@ -12,35 +12,74 @@ public class ShapesManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _cubePrefab;
+    [SerializeField]
+    private GameObject _shapes;
     public List<GameObject> createdShapes = new List<GameObject>();
 
     public Color selectedColor = Color.red;
 
     private GameObject _createdShape;
     private IHand _hand;
+    private bool _unselectedButStillPinching = false;
 
-    public void AddShape(PrimitiveType type, Transform transform) {
+    public void UpdateColor(Color color)
+    {
+        if (selectedColor == color) return;
+        selectedColor = color;
+        foreach(Transform shape in _shapes.transform)
+        {
+            shape.gameObject.GetComponent<PaletteShapeInteractableBehavior>().UpdateColor(color);
+        }
+    }
+
+    public void AddShape(PrimitiveType type, Vector3 position) {
         _hand = _palette.GetDominantHand();
         GameObject shape = Instantiate(_cubePrefab);
         createdShapes.Add(shape);
-        shape.transform.SetParent(transform, true);        
+        shape.transform.position = position;
+        shape.transform.SetParent(this.transform, true);
+        _createdShape = shape;
     }
 
-    void Update() {
-        if(_createdShape != null && _hand != null)
+    public void UnselectShape(bool checkFinger)
+    {
+        if(checkFinger)
         {
-            var pinchStrength = _hand.GetFingerPinchStrength(HandFinger.Index);
-            var isIndexFingerPinching = _hand.GetFingerIsPinching(HandFinger.Index);
-            var confidence = _hand.GetFingerIsHighConfidence(HandFinger.Index);
-            if(!isIndexFingerPinching)
+            var isFingerPinching = _hand.GetIndexFingerIsPinching();
+            if (isFingerPinching)
             {
-                _createdShape = null;
-            } else
+                _unselectedButStillPinching = true;
+                return;
+            }
+        }
+        _createdShape = null;
+        _hand = null;
+        _unselectedButStillPinching = false;
+    }
+
+    private void UpdateShapePosition()
+    {
+        Pose fingerTipPose;
+        Pose thumbTipPose;
+        if (_hand.GetJointPose(HandJointId.HandIndexTip, out fingerTipPose) && _hand.GetJointPose(HandJointId.HandThumbTip, out thumbTipPose))
+        {
+            _createdShape.transform.position = (fingerTipPose.position + thumbTipPose.position) / 2 ;
+        }
+    }
+
+    protected void Start()
+    {
+        UpdateColor(selectedColor);
+    }
+
+    protected void Update() {
+        if (_createdShape != null && _hand != null)
+        {
+            UpdateShapePosition();
+            var isFingerPinching = _hand.GetIndexFingerIsPinching();
+            if(_unselectedButStillPinching && !isFingerPinching)
             {
-                Pose fingerTipPose;
-                if(_hand.GetJointPose(HandJointId.HandIndexTip, out fingerTipPose)) {
-                    _createdShape.transform.position = fingerTipPose.position;
-                }
+                UnselectShape(false);
             }
         }
     }

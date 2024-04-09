@@ -21,7 +21,6 @@ namespace AccidentalPicasso.UI.Palette
         private ShapesManager _shapeManager;
         protected bool _started = false;
 
-
         protected virtual void Awake()
         {
             InteractableView = _interactableView as IInteractableView;
@@ -58,11 +57,20 @@ namespace AccidentalPicasso.UI.Palette
             switch (args.NewState)
             {
                 case InteractableState.Select:
-                    _shapeManager.AddShape(_shape, this.transform);
+                    _shapeManager.AddShape(_shape, this.transform.position);
                     return;
                 default:
+                    if(args.PreviousState == InteractableState.Select)
+                    {
+                        _shapeManager.UnselectShape(true);
+                    }
                     return;
             }
+        }
+
+        public void UpdateColor(Color color)
+        {
+            this.GetComponent<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
         }
     }
 }
