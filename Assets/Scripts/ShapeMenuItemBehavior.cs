@@ -14,15 +14,14 @@ namespace AccidentalPicasso.UI.Palette
         protected bool _started = false;
         private ShapesManager shapesManager;
         private PaletteBehavior paletteBehavior;
-        private float replacePrimitiveThreshold = 0.5f;
-
+        private float replacePrimitiveThreshold = 0.03f;
+        private bool shouldResetPose = false;
 
         protected virtual void Awake()
         {
             shapesManager = FindObjectOfType<ShapesManager>();
             paletteBehavior = FindObjectOfType<PaletteBehavior>();
             InteractableView = GetComponentInChildren<InteractableGroupView>();
-            Debug.Log("threshold" + replacePrimitiveThreshold);
         }
         protected virtual void Start()
         {
@@ -39,6 +38,14 @@ namespace AccidentalPicasso.UI.Palette
             if (_started)
             {
                 InteractableView.WhenStateChanged += HandleStateChange;
+            }
+        }
+
+        protected void Update()
+        {
+            if(shouldResetPose)
+            {
+                ResetPositionAndLocation();
             }
         }
 
@@ -59,13 +66,16 @@ namespace AccidentalPicasso.UI.Palette
                     RemoveFromMenu(shapesManager.transform);
                 } else
                 {
-                    // Reset to original relative position
-                    Debug.Log("localPosition"+transform.localPosition);
-                    transform.SetLocalPositionAndRotation(originalRelativePosition, originalRelativeRotation);
-                    Debug.Log("UPDATED" + transform.name + transform.localPosition + " " + originalRelativePosition + transform.localRotation + " " + originalRelativeRotation);
+                    shouldResetPose = true;
                 }
             }
             return;
+        }
+
+        private void ResetPositionAndLocation()
+        {
+            transform.SetLocalPositionAndRotation(originalRelativePosition, originalRelativeRotation);
+            shouldResetPose = false;
         }
 
         private void RemoveFromMenu(Transform newParent)
