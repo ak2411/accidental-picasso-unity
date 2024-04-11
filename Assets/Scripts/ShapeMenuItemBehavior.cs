@@ -93,6 +93,10 @@ namespace AccidentalPicasso.UI.Palette
             transform.SetLocalPositionAndRotation(originalRelativePosition, originalRelativeRotation);
             shouldResetPose = false;
         }
+        public void UpdateColor(Color color)
+        {
+            GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
+        }
     }
 }
 

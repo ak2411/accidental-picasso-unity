@@ -28,7 +28,7 @@ public class ShapesManager : MonoBehaviour
         selectedColor = color;
         foreach(Transform shape in _shapes.transform)
         {
-            shape.gameObject.GetComponent<PaletteShapeInteractableBehavior>().UpdateColor(color);
+            shape.gameObject.GetComponent<ShapeMenuItemBehavior>().UpdateColor(color);
         }
     }
 
@@ -38,6 +38,7 @@ public class ShapesManager : MonoBehaviour
         createdShapes.Add(shape);
         shape.transform.position = position;
         shape.transform.SetParent(this.transform, true);
+        shape.gameObject.GetComponent<ShapeMenuItemBehavior>().UpdateColor(selectedColor);
         _createdShape = shape;
     }
 
