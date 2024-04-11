@@ -16,6 +16,8 @@ namespace AccidentalPicasso.UI.Palette
         private PaletteBehavior paletteBehavior;
         private float replacePrimitiveThreshold = 0.03f;
         private bool shouldResetPose = false;
+        private bool removedFromMenu = false;
+        private bool isSelected = false;
 
         protected virtual void Awake()
         {
@@ -43,6 +45,14 @@ namespace AccidentalPicasso.UI.Palette
 
         protected void Update()
         {
+            if(isSelected)
+            {
+                if (!removedFromMenu && Vector3.Distance(transform.localPosition, originalRelativePosition) > replacePrimitiveThreshold)
+                {
+                    removedFromMenu = true;
+                    this.transform.SetParent(shapesManager.transform, true);
+                }
+            }
             if(shouldResetPose)
             {
                 ResetPositionAndLocation();
@@ -59,34 +69,29 @@ namespace AccidentalPicasso.UI.Palette
 
         private void HandleStateChange(InteractableStateChangeArgs args)
         {
+            if (args.NewState == InteractableState.Select)
+            {
+                isSelected = true;
+            }
             if (args.PreviousState == InteractableState.Select && args.NewState != InteractableState.Select)
             {
-                if(Vector3.Distance(transform.localPosition, originalRelativePosition) > replacePrimitiveThreshold)
+                isSelected = false;
+                if(removedFromMenu)
                 {
-                    RemoveFromMenu(shapesManager.transform);
-                } else
+                    enabled = false;
+                    paletteBehavior.UpdatePrimitiveOptions();
+                }
+                else
                 {
                     shouldResetPose = true;
                 }
             }
-            return;
         }
 
         private void ResetPositionAndLocation()
         {
             transform.SetLocalPositionAndRotation(originalRelativePosition, originalRelativeRotation);
             shouldResetPose = false;
-        }
-
-        private void RemoveFromMenu(Transform newParent)
-        {
-            // move gameobject to new parent
-            this.transform.SetParent(newParent, true);
-            // update hand menu with primitive replacements
-            paletteBehavior.UpdatePrimitiveOptions();
-            // disable this monobehavior
-            enabled = false;
-            // undo material changes
         }
     }
 }
