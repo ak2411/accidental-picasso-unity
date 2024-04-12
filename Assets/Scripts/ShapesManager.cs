@@ -16,21 +16,9 @@ public class ShapesManager : MonoBehaviour
     private GameObject _shapes;
     public List<GameObject> createdShapes = new List<GameObject>();
 
-    public Color selectedColor = Color.red;
-
     private GameObject _createdShape;
     private IHand _hand;
     private bool _unselectedButStillPinching = false;
-
-    public void UpdateColor(Color color)
-    {
-        if (selectedColor == color) return;
-        selectedColor = color;
-        foreach(Transform shape in _shapes.transform)
-        {
-            shape.gameObject.GetComponent<ShapeMenuItemBehavior>().UpdateColor(color);
-        }
-    }
 
     public void AddShape(PrimitiveType type, Vector3 position) {
         _hand = _palette.GetDominantHand();
@@ -38,7 +26,6 @@ public class ShapesManager : MonoBehaviour
         createdShapes.Add(shape);
         shape.transform.position = position;
         shape.transform.SetParent(this.transform, true);
-        shape.gameObject.GetComponent<ShapeMenuItemBehavior>().UpdateColor(selectedColor);
         _createdShape = shape;
     }
 
@@ -66,11 +53,6 @@ public class ShapesManager : MonoBehaviour
         {
             _createdShape.transform.position = (fingerTipPose.position + thumbTipPose.position) / 2 ;
         }
-    }
-
-    protected void Start()
-    {
-        UpdateColor(selectedColor);
     }
 
     protected void Update() {

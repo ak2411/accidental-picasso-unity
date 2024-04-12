@@ -35,17 +35,10 @@ namespace AccidentalPicasso.UI.Palette
             this.EndStart(ref _started);
         }
 
-        protected virtual void OnEnable()
-        {
-            if (_started)
-            {
-                InteractableView.WhenStateChanged += HandleStateChange;
-            }
-        }
-
         protected void Update()
         {
-            if(isSelected)
+            // Need to do updates here or else the order may be wrong
+            if (isSelected)
             {
                 if (!removedFromMenu && Vector3.Distance(transform.localPosition, originalRelativePosition) > replacePrimitiveThreshold)
                 {
@@ -53,9 +46,17 @@ namespace AccidentalPicasso.UI.Palette
                     this.transform.SetParent(shapesManager.transform, true);
                 }
             }
-            if(shouldResetPose)
+            if (shouldResetPose)
             {
                 ResetPositionAndLocation();
+            }
+        }
+
+        protected virtual void OnEnable()
+        {
+            if (_started)
+            {
+                InteractableView.WhenStateChanged += HandleStateChange;
             }
         }
 
@@ -93,6 +94,7 @@ namespace AccidentalPicasso.UI.Palette
             transform.SetLocalPositionAndRotation(originalRelativePosition, originalRelativeRotation);
             shouldResetPose = false;
         }
+
         public void UpdateColor(Color color)
         {
             GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);

@@ -34,7 +34,24 @@ namespace AccidentalPicasso.UI.Palette
         private List<Primitive> primitiveReferences = new List<Primitive>();
         [SerializeField]
         private Transform _primitivesContainer;
-        
+
+        private Color selectedColor = Color.red;
+
+        protected void Awake()
+        {
+            // Create a copy of each primitive reference
+            foreach (GameObject primitive in _primitives)
+            {
+                Primitive createdPrimitive = new Primitive(primitive.name, primitive.gameObject, primitive.transform.localPosition, primitive.transform.localRotation);
+                primitiveReferences.Add(createdPrimitive);
+            }
+        }
+
+        protected void Start()
+        {
+            UpdateColor(selectedColor);
+        }
+
         /// <summary>
         /// Show/hide the menu
         /// </summary>
@@ -45,21 +62,6 @@ namespace AccidentalPicasso.UI.Palette
                 _menuParent.SetActive(true);
             }
         }
-
-        protected void Awake()
-        {
-            foreach(GameObject primitive in _primitives)
-            {
-                Primitive createdPrimitive = new Primitive(primitive.name, primitive.gameObject, primitive.transform.localPosition, primitive.transform.localRotation);
-                primitiveReferences.Add(createdPrimitive);
-            }
-        }
-
-        //protected void Start()
-        //{
-        //    // whenever it is instantiated again, check if we need to update the primitive options
-        //    UpdatePrimitiveOptions();
-        //}
 
         public void UpdatePrimitiveOptions()
         {
@@ -72,11 +74,21 @@ namespace AccidentalPicasso.UI.Palette
                     {
                         // Add replacement
                         GameObject replacementPrimitive = Instantiate(primitive.gameObject);
+                        replacementPrimitive.GetComponent<ShapeMenuItemBehavior>().UpdateColor(selectedColor);
                         replacementPrimitive.name = primitive.name;
                         replacementPrimitive.transform.SetParent(_primitivesContainer, false);
                         replacementPrimitive.transform.SetLocalPositionAndRotation(primitive.position, primitive.rotation);
                     }
                 }
+            }
+        }
+
+        public void UpdateColor(Color color)
+        {
+            selectedColor = color;
+            foreach (Transform shape in _primitivesContainer.transform)
+            {
+                shape.gameObject.GetComponent<ShapeMenuItemBehavior>().UpdateColor(color);
             }
         }
     }

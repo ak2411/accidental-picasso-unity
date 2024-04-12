@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Interaction;
+using AccidentalPicasso.UI.Palette;
 
 public class ColorPokeHandler : MonoBehaviour
 {
     [SerializeField]
     private PokeInteractable pokeInteractable;
     [SerializeField]
-    private ShapesManager shapesManager;
+    private PaletteBehavior paletteBehavior;
     private Color _color = Color.white;
     public Color Color
     {
@@ -24,7 +25,7 @@ public class ColorPokeHandler : MonoBehaviour
 
     protected void Awake()
     {
-        shapesManager = FindObjectOfType<ShapesManager>();
+        paletteBehavior = FindObjectOfType<PaletteBehavior>();
         pokeInteractable.WhenStateChanged += HandleStateChange;
     }
 
@@ -33,11 +34,10 @@ public class ColorPokeHandler : MonoBehaviour
         switch (args.NewState)
         {
             case InteractableState.Select:
-                shapesManager.UpdateColor(_color);
+                paletteBehavior.UpdateColor(_color);
                 return;
             default:
                 return;
         }
-            
     }
 }
