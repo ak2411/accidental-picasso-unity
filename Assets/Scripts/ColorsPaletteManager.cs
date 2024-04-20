@@ -31,7 +31,8 @@ public class ColorsPaletteManager : MonoBehaviour
             if(ColorUtility.TryParseHtmlString(color, out parsedColor))
             {
                 material.MaterialPropertyBlock.SetColor(_colorShaderID, parsedColor);
-                colorItem.GetComponentInChildren<ColorPokeHandler>().Color = parsedColor;
+                colorItem.GetComponent<ColorPokeHandler>().Color = parsedColor;
+                colorItem.GetComponent<ColorPokeHandler>().StartPosition = colorItem.transform.localPosition;
             }
             position = position + new Vector3(0.0f, _padding, 0.0f);
             if (i+1 == _colors.Count/2)

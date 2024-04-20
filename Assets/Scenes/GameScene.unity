@@ -6662,7 +6662,7 @@ MonoBehaviour:
   - '#000000'
   - '#FFFFFF'
   - '#E0E0E0'
-  _colorVisualRef: {fileID: 5574700203130222873, guid: 0d0c72e382ef8450ba4ed44157685883, type: 3}
+  _colorVisualRef: {fileID: 4224655915897697079, guid: 0d0c72e382ef8450ba4ed44157685883, type: 3}
   _padding: -0.02
   _colorShaderName: _Color
 --- !u!1 &1168771936
