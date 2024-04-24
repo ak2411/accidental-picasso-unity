@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 0}
+  _pointable: {fileID: 3433755146534917104}
   _rigidbody: {fileID: 5775866884647245976}
   _scaleMassWithSize: 1
 --- !u!1 &6782898510750207246
@@ -457,7 +457,7 @@ Transform:
   - {fileID: 7793721891465794434}
   - {fileID: 4459559316409929426}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8926855320901018603
 BoxCollider:
