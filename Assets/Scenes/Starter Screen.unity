@@ -11452,7 +11452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeRenderer: {fileID: 841518687}
   originalColor: {r: 0.40784314, g: 0, b: 0.7254902, a: 1}
-  hoverColor: {r: 0.40784314, g: 0, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0, b: 1, a: 1}
 --- !u!114 &2126640351
 MonoBehaviour:
   m_ObjectHideFlags: 0
