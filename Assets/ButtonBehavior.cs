@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Interaction;
+using UnityEngine.Events;
 
 public class ButtonBehavior : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ButtonBehavior : MonoBehaviour
     private Color originalColor;
     [SerializeField]
     private Color hoverColor;
+    [SerializeField]
+    private UnityEvent WhenSelect;
 
     private IInteractableView InteractableView { get; set; }
     protected bool _started = false;
@@ -53,7 +56,7 @@ public class ButtonBehavior : MonoBehaviour
                 EnterHoverHandler();
                 return;
             case InteractableState.Select:
-                Debug.Log("SELECTED");
+                WhenSelect.Invoke();
                 return;
             default:
                 ExitHoverHandler();
@@ -63,13 +66,11 @@ public class ButtonBehavior : MonoBehaviour
 
     private void EnterHoverHandler()
     {
-        Debug.Log("HOVER ENTER");
         cubeRenderer.material.color = hoverColor;
     }
 
     private void ExitHoverHandler()
     {
-        Debug.Log("HOVER EXIT");
         cubeRenderer.material.color = originalColor;
     }
 }

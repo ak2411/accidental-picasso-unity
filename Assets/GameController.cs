@@ -5,9 +5,4 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private GameObject PlatformPrefab;
-
-    private void CreatePlatforms()
-    {
-        
-    }
 }
