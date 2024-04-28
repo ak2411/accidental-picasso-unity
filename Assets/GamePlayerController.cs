@@ -10,6 +10,7 @@ public class GamePlayerController : MonoBehaviour
 
     public void SetPlatformSelected(PlatformType platform)
     {
+        if (platformSelected != null) return;
         platformSelected = platform;
         isPlaying = true;
         Debug.Log("platformSelected " + platformSelected);
