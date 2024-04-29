@@ -19,6 +19,7 @@ public class PlatformBehavior : MonoBehaviour
     private GameObject setOwnerButton;
     [SerializeField]
     private GameObject registeredUserIcon;
+    public bool connect;
     private GamePlayerController gamePlayerController;
     protected void Awake()
     {
@@ -29,15 +30,24 @@ public class PlatformBehavior : MonoBehaviour
         gamePlayerController = FindObjectOfType<GamePlayerController>();
     }
 
+    protected void Update()
+    {
+        if(connect)
+        {
+            ConnectWithLocalUser();
+            connect = false;
+        }
+    }
+
     public void ConnectWithLocalUser()
     {
         Debug.Log("called user set " + owner);
-        if (owner != null) return;
+        if (owner != null || gamePlayerController.isPlaying) return;
         owner = gamePlayerController.userID;
         Debug.Log("set user " + owner);
         registeredUserIcon.SetActive(true);
         setOwnerButton.SetActive(false);
-        gamePlayerController.SetPlatformSelected(platformId);
+        gamePlayerController.SetPlatformSelected(gameObject);
     }
 
     public GameObject GetChildGameObject(Transform parent, string name, bool includeInactive)

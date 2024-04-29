@@ -12,22 +12,19 @@ namespace AccidentalPicasso.UI.Palette
         private Quaternion originalRelativeRotation;
         private IInteractableView InteractableView { get; set; }
         protected bool _started = false;
-        private ShapesManager shapesManager;
         private PaletteBehavior paletteBehavior;
         private float replacePrimitiveThreshold = 0.03f;
         private bool shouldResetPose = false;
         private bool removedFromMenu = false;
-        private bool isSelected = false;
+        private bool isSelected = true;
 
         protected virtual void Awake()
         {
-            shapesManager = FindObjectOfType<ShapesManager>();
             paletteBehavior = FindObjectOfType<PaletteBehavior>();
             InteractableView = GetComponentInChildren<InteractableGroupView>();
         }
         protected virtual void Start()
         {
-            //Debug.Log("Test debug log");
             this.BeginStart(ref _started);
             transform.GetLocalPositionAndRotation(out originalRelativePosition, out originalRelativeRotation);
             this.AssertField(InteractableView, nameof(InteractableView));
@@ -42,8 +39,7 @@ namespace AccidentalPicasso.UI.Palette
             {
                 if (!removedFromMenu && Vector3.Distance(transform.localPosition, originalRelativePosition) > replacePrimitiveThreshold)
                 {
-                    removedFromMenu = true;
-                    this.transform.SetParent(shapesManager.transform, true);
+                    InstantiateShape();
                 }
             }
             if (shouldResetPose)
@@ -98,6 +94,12 @@ namespace AccidentalPicasso.UI.Palette
         public void UpdateColor(Color color)
         {
             GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
+        }
+
+        private void InstantiateShape()
+        {
+            removedFromMenu = true;
+            this.transform.SetParent(null, true);
         }
     }
 }
