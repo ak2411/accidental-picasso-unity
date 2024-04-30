@@ -6,19 +6,20 @@ using Oculus.Interaction;
 public class StarterPositionBehavior : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 starterOffset = new Vector3(0.0f, 0.01f, 0.05f);
+    private Vector3 starterOffset = new Vector3(0.0f,-0.2f, 0.5f);
+    [SerializeField]
+    private GameObject centerEye;
     // Start is called before the first frame update
     void Start()
     {
-        PositionBeforeUser();
+        StartCoroutine(PositionBeforeUser());
     }
 
-    private void PositionBeforeUser()
+    private IEnumerator PositionBeforeUser()
     {
-        var cameraTransform = Camera.main.transform;
+        yield return new WaitForEndOfFrame();
+        var cameraTransform = centerEye.transform;
         var starterPos = cameraTransform.position + cameraTransform.forward * starterOffset.z + cameraTransform.up * starterOffset.y;
-        var directionToCamera = (cameraTransform.position - starterPos).normalized;
         this.transform.position = starterPos;
-        //this.transform.SetPositionAndRotation(starterPos, Quaternion.LookRotation(directionToCamera * 0.01f));
     }
 }
