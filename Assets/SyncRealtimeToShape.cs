@@ -30,6 +30,16 @@ public class SyncRealtimeToShape : MonoBehaviour
         }
     }
 
+    public ShapeType? GetShapeType()
+    {
+        return remoteShapeManager.prefabNameToShapeType(shape.name);
+    }
+
+    public Color GetColor()
+    {
+        return shape.GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color");
+    }
+
     private void UpdateShapeTransform()
     {
         if (shape == null) return;
@@ -51,7 +61,8 @@ public class SyncRealtimeToShape : MonoBehaviour
 
     public void CreateShape(ShapeType shapeType, Color color)
     {
-        shape = remoteShapeManager.CreateRemoteShape(shapeType);
+        if (shape == null)
+            shape = remoteShapeManager.CreateRemoteShape(shapeType);
         UpdateLocalColor(color);
     }
 }

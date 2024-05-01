@@ -37,4 +37,17 @@ public class RemoteShapeManager : MonoBehaviour
         }
         return null;
     }
+
+    public ShapeType? prefabNameToShapeType(string name)
+    {
+        if(name.Contains(cubeRef.name))
+                return ShapeType.Cube;
+        else if(name.Contains(cylinderRef.name))
+                return ShapeType.Cylinder;
+        else if (name.Contains(coneRef.name))
+                return ShapeType.Cone;
+        else if (name.Contains(sphereRef.name))
+                return ShapeType.Sphere;
+        return null;
+    }
 }

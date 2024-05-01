@@ -10,13 +10,13 @@ public class InstantiatedShapeBehavior : MonoBehaviour
     private IInteractableView InteractableView { get; set; }
     private GamePlayerController gamePlayerController;
     private GameObject realtimeCounterpart;
+    private Realtime _realtime;
     protected bool _started = false;
     protected virtual void Awake()
     {
         InteractableView = GetComponentInChildren<InteractableGroupView>();
         gamePlayerController = FindObjectOfType<GamePlayerController>();
-        realtimeCounterpart = Realtime.Instantiate("RealtimeShape");
-        realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
+        _realtime = FindObjectOfType<Realtime>();
     }
 
     protected virtual void Start()
@@ -24,6 +24,17 @@ public class InstantiatedShapeBehavior : MonoBehaviour
         this.BeginStart(ref _started);
         this.AssertField(InteractableView, nameof(InteractableView));
         this.EndStart(ref _started);
+    }
+
+    protected void Update()
+    {
+        if (!_realtime.connected)
+            return;
+        if(!realtimeCounterpart)
+        {
+            realtimeCounterpart = Realtime.Instantiate("RealtimeShape");
+            realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
+        }
     }
 
     protected virtual void OnEnable()

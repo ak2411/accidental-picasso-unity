@@ -380,8 +380,6 @@ GameObject:
   - component: {fileID: 1926096004657487300}
   - component: {fileID: 6203272804144408244}
   - component: {fileID: -8683517530237874274}
-  - component: {fileID: 8336829749960243116}
-  - component: {fileID: -2505215575260201546}
   m_Layer: 0
   m_Name: Cylinder Shape
   m_TagString: Untagged
@@ -568,47 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85663e7b69ca44f3bb042fbed01fbed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8336829749960243116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4636513591668300256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 0}
-  _sceneViewUUID: 
-  _viewUUID: 
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 1
-  _sceneViewDestroyWhenLastClientLeaves: 1
-  _components:
-  - componentID: 1
-    component: {fileID: -2505215575260201546}
-  _childViews: []
---- !u!114 &-2505215575260201546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4636513591668300256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1029778088, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolate: 1
-  _syncPosition: 1
-  _syncRotation: 1
-  _syncScale: 1
-  _syncVelocity: 1
-  _maintainOwnershipWhileSleeping: 1
 --- !u!1 &5763764927855383109
 GameObject:
   m_ObjectHideFlags: 0

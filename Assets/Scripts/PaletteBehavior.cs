@@ -35,8 +35,6 @@ namespace AccidentalPicasso.UI.Palette
         private List<Primitive> primitiveReferences = new List<Primitive>();
         [SerializeField]
         private Transform _primitivesContainer;
-        [SerializeField]
-        private Realtime _realtime;
 
         private Color selectedColor = Color.red;
 

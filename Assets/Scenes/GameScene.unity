@@ -1249,7 +1249,6 @@ MonoBehaviour:
   - {fileID: 1836307045929225070, guid: baa6de28a6b8a4c58918c418de303f9a, type: 3}
   - {fileID: 4636513591668300256, guid: c9676a0f8ad5f409c9485cf34c6e53c3, type: 3}
   _primitivesContainer: {fileID: 559647699}
-  _realtime: {fileID: 2023631360}
 --- !u!114 &187003308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11642,17 +11641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 1749072571}
---- !u!114 &2023631360 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7459419074827946970, guid: 7b6bfdf4df303fa41864533ddfea8e75, type: 3}
-  m_PrefabInstance: {fileID: 1160992501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1424795628, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2023759916
 GameObject:
   m_ObjectHideFlags: 0

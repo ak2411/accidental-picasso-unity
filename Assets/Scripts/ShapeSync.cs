@@ -24,8 +24,10 @@ public class ShapeSync : RealtimeComponent<ShapeModel>
         {
             if(currentModel.isFreshModel)
             {
-                currentModel.shape = ShapeType.Cylinder;
-                currentModel.color = Color.blue;
+                ShapeType? shapeType = syncRealtimeToShape.GetShapeType();
+                if (shapeType == null) return;
+                currentModel.shape = (ShapeType)shapeType;
+                currentModel.color = syncRealtimeToShape.GetColor();
             }
             UpdateShape();
             currentModel.colorDidChange += ColorDidChange;
