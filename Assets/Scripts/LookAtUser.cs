@@ -5,6 +5,8 @@ using UnityEngine;
 public class LookAtUser : MonoBehaviour
 {
     private Camera mainCamera;
+    [SerializeField]
+    private float offset = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class LookAtUser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var directionToCamera = (mainCamera.transform.position - transform.position).normalized;
-        this.transform.rotation = Quaternion.LookRotation(directionToCamera * -0.01f);
+        var directionToCamera = (mainCamera.transform.position - transform.position).normalized * offset;
+        this.transform.rotation = Quaternion.LookRotation(new Vector3(directionToCamera.x, 0.0f, directionToCamera.z));
     }
 }

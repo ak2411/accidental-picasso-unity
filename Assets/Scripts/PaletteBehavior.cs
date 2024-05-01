@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
 
 namespace AccidentalPicasso.UI.Palette
 {
@@ -34,6 +35,8 @@ namespace AccidentalPicasso.UI.Palette
         private List<Primitive> primitiveReferences = new List<Primitive>();
         [SerializeField]
         private Transform _primitivesContainer;
+        [SerializeField]
+        private Realtime _realtime;
 
         private Color selectedColor = Color.red;
 
@@ -50,6 +53,7 @@ namespace AccidentalPicasso.UI.Palette
         protected void Start()
         {
             UpdateColor(selectedColor);
+            UpdatePrimitiveOptions();
         }
 
         /// <summary>

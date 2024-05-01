@@ -75,8 +75,9 @@ namespace AccidentalPicasso.UI.Palette
                 isSelected = false;
                 if(removedFromMenu)
                 {
-                    enabled = false;
+                    GetComponent<InstantiatedShapeBehavior>().enabled = true;
                     paletteBehavior.UpdatePrimitiveOptions();
+                    enabled = false;
                 }
                 else
                 {
@@ -98,8 +99,11 @@ namespace AccidentalPicasso.UI.Palette
 
         private void InstantiateShape()
         {
-            removedFromMenu = true;
             this.transform.SetParent(null, true);
+            removedFromMenu = true;
+            GetComponent<InstantiatedShapeBehavior>().enabled = true;
+            paletteBehavior.UpdatePrimitiveOptions();
+            enabled = false;
         }
     }
 }

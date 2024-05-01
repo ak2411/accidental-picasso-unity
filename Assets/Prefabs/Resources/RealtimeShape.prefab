@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6048691179043855471}
   - component: {fileID: 5271892771729343423}
   - component: {fileID: 7151547065418888668}
+  - component: {fileID: 504955397566470690}
+  - component: {fileID: -3391677519280443192}
   m_Layer: 0
   m_Name: RealtimeShape
   m_TagString: Untagged
@@ -31,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5271892771729343423
 MonoBehaviour:
@@ -55,6 +57,8 @@ MonoBehaviour:
   _components:
   - componentID: 1
     component: {fileID: 7151547065418888668}
+  - componentID: 2
+    component: {fileID: -3391677519280443192}
   _childViews: []
 --- !u!114 &7151547065418888668
 MonoBehaviour:
@@ -74,3 +78,28 @@ MonoBehaviour:
   _syncScale: 1
   _syncVelocity: 1
   _maintainOwnershipWhileSleeping: 0
+--- !u!114 &504955397566470690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456471826449019551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d089e6bd0d040cabd54ef704a7bd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: {fileID: 0}
+--- !u!114 &-3391677519280443192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7456471826449019551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a1c0838d44344788556215368d7dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
