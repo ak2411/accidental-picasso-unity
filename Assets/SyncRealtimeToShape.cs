@@ -49,6 +49,7 @@ public class SyncRealtimeToShape : MonoBehaviour
 
     private void UpdateRealtimeTransform()
     {
+        if (shape == null) return;
         transform.SetLocalPositionAndRotation(shape.transform.localPosition, shape.transform.localRotation);
         transform.localScale = shape.transform.localScale;
     }

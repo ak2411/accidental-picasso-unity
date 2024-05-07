@@ -32,7 +32,11 @@ public class InstantiatedShapeBehavior : MonoBehaviour
             return;
         if(!realtimeCounterpart)
         {
-            realtimeCounterpart = Realtime.Instantiate("RealtimeShape");
+            Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+            instantiateOptions.ownedByClient = true;
+            instantiateOptions.preventOwnershipTakeover = true;
+            instantiateOptions.useInstance = _realtime;
+            realtimeCounterpart = Realtime.Instantiate("RealtimeShape", instantiateOptions);
             realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
         }
     }

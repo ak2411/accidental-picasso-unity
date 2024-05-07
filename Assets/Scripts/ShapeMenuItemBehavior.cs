@@ -16,7 +16,7 @@ namespace AccidentalPicasso.UI.Palette
         private float replacePrimitiveThreshold = 0.03f;
         private bool shouldResetPose = false;
         private bool removedFromMenu = false;
-        private bool isSelected = false;
+        private bool isSelected = true;
 
         protected virtual void Awake()
         {
@@ -101,6 +101,9 @@ namespace AccidentalPicasso.UI.Palette
         {
             this.transform.SetParent(null, true);
             removedFromMenu = true;
+            paletteBehavior.UpdatePrimitiveOptions();
+            GetComponent<InstantiatedShapeBehavior>().enabled = true;
+            enabled = false;
         }
     }
 }
