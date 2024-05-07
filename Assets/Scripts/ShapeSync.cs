@@ -17,52 +17,45 @@ public class ShapeSync : RealtimeComponent<ShapeModel>
     {
         if(previousModel != null)
         {
+            Debug.Log("should not be called");
             previousModel.shapeDidChange -= ShapeDidChange;
             previousModel.colorDidChange -= ColorDidChange;
         }
         if(currentModel != null)
         {
+            Debug.Log("curr model is not null");
             if(currentModel.isFreshModel)
             {
-                ShapeType? shapeType = syncRealtimeToShape.GetShapeType();
-                if (shapeType == null) return;
-                currentModel.shape = (ShapeType)shapeType;
+                Debug.Log("is fresh model");
+                currentModel.shape = syncRealtimeToShape.GetShapeType();
                 currentModel.color = syncRealtimeToShape.GetColor();
-                Debug.Log("color" + currentModel.color);
             }
-            UpdateShape();
             currentModel.colorDidChange += ColorDidChange;
             currentModel.shapeDidChange += ShapeDidChange;
+            Debug.Log("added the events");
         }
     }
 
     public void SetColor(Color color)
     {
+        Debug.Log("color set" + color);
         model.color = color;
     }
 
     public void SetShape(ShapeType shape)
     {
+        Debug.Log("shape set" + shape);
         model.shape = shape;
-    }
-
-    private void UpdateShape()
-    {
-        if(syncRealtimeToShape.shape == null )
-        {
-            syncRealtimeToShape.CreateShape(model.shape, model.color);
-        } else
-        {
-            syncRealtimeToShape.UpdateLocalColor(model.color);
-        }
     }
 
     private void ShapeDidChange(ShapeModel model, ShapeType shapeType)
     {
-        UpdateShape();
+        Debug.Log("shape changed" + shapeType);
+        syncRealtimeToShape.SetShapeType(shapeType);
     }
-    private void ColorDidChange(ShapeModel model, Color value)
+    private void ColorDidChange(ShapeModel model, Color color)
     {
-        syncRealtimeToShape.UpdateLocalColor(model.color);
+        Debug.Log("color changed" + color);
+        syncRealtimeToShape.UpdateLocalColor(color);
     }
 }

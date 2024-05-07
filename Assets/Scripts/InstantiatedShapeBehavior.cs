@@ -38,6 +38,9 @@ public class InstantiatedShapeBehavior : MonoBehaviour
             instantiateOptions.useInstance = _realtime;
             realtimeCounterpart = Realtime.Instantiate("RealtimeShape", instantiateOptions);
             realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
+            realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetColor(GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color"));
+            realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetShapeType(gameObject.name);
+            realtimeCounterpart.GetComponent<RealtimeTransform>().RequestOwnership();
         }
     }
 
@@ -75,6 +78,7 @@ public class InstantiatedShapeBehavior : MonoBehaviour
     private void OnSelect()
     {
         if (!gamePlayerController.isPlaying) return;
+        
         // check collision
         // if collide, is it the platform the user is assigned to?
         // if not, return

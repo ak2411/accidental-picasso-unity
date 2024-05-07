@@ -38,7 +38,7 @@ public class RemoteShapeManager : MonoBehaviour
         return null;
     }
 
-    public ShapeType? prefabNameToShapeType(string name)
+    public ShapeType prefabNameToShapeType(string name)
     {
         if(name.Contains(cubeRef.name))
                 return ShapeType.Cube;
@@ -48,6 +48,6 @@ public class RemoteShapeManager : MonoBehaviour
                 return ShapeType.Cone;
         else if (name.Contains(sphereRef.name))
                 return ShapeType.Sphere;
-        return null;
+        return ShapeType.Default;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ShapeType
 {
-    Cube, Sphere, Cone, Cylinder
+    Cube, Sphere, Cone, Cylinder, Default
 }
 
 [RealtimeModel]

@@ -9,12 +9,16 @@ public class SyncRealtimeToShape : MonoBehaviour
 {
     private RealtimeView realtimeView;
     public GameObject shape;
+    public Color localColor = Color.gray;
+    public ShapeType localShapeType = ShapeType.Default;
     private RemoteShapeManager remoteShapeManager;
+    private ShapeSync shapeSync;
 
     // Start is called before the first frame update
     void Awake()
     {
         realtimeView = GetComponent<RealtimeView>();
+        shapeSync = GetComponent<ShapeSync>();
         remoteShapeManager = FindObjectOfType<RemoteShapeManager>();
     }
 
@@ -26,18 +30,41 @@ public class SyncRealtimeToShape : MonoBehaviour
             UpdateRealtimeTransform();
         } else
         {
+            Debug.Log("else condition");
             UpdateShapeTransform();
+            if(shape == null && localColor != Color.gray && localShapeType != ShapeType.Default)
+            {
+                CreateShape(localShapeType, localColor);
+            }
         }
     }
 
-    public ShapeType? GetShapeType()
+    public ShapeType GetShapeType()
     {
-        return remoteShapeManager.prefabNameToShapeType(shape.name);
+        return localShapeType;
+    }
+
+    public void SetShapeType(string prefabName)
+    {
+        ShapeType shapeType = remoteShapeManager.prefabNameToShapeType(prefabName);
+        localShapeType = shapeType;
+        shapeSync.SetShape(localShapeType);
+    }
+
+    public void SetShapeType(ShapeType shapeType)
+    {
+        localShapeType = shapeType;
+    }
+
+    public void SetColor(Color color)
+    {
+        localColor = color;
+        shapeSync.SetColor(localColor);
     }
 
     public Color GetColor()
     {
-        return shape.GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color");
+        return localColor;
     }
 
     private void UpdateShapeTransform()
@@ -56,6 +83,7 @@ public class SyncRealtimeToShape : MonoBehaviour
 
     public void UpdateLocalColor(Color color)
     {
+        localColor = color;
         if (shape == null) return;
         shape.GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
     }
