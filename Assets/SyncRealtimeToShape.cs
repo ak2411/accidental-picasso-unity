@@ -9,10 +9,21 @@ public class SyncRealtimeToShape : MonoBehaviour
 {
     private RealtimeView realtimeView;
     public GameObject shape;
-    public Color localColor = Color.gray;
-    public ShapeType localShapeType = ShapeType.Default;
+    private Color _color = Color.gray;
+    public Color Color
+    {
+        get { return _color; }
+        set { _color = value; }
+    }
+    private ShapeType _shapeType = ShapeType.Default;
+    public ShapeType ShapeType
+    {
+        get { return _shapeType; }
+        set { _shapeType = value; }
+    }
     private RemoteShapeManager remoteShapeManager;
     private ShapeSync shapeSync;
+    public bool updateShape = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,41 +41,57 @@ public class SyncRealtimeToShape : MonoBehaviour
             UpdateRealtimeTransform();
         } else
         {
-            Debug.Log("else condition");
             UpdateShapeTransform();
-            if(shape == null && localColor != Color.gray && localShapeType != ShapeType.Default)
+            if(shape == null && Color != Color.gray && ShapeType != ShapeType.Default)
             {
-                CreateShape(localShapeType, localColor);
+                CreateRemoteShape(ShapeType, Color);
             }
+        }
+        if(updateShape)
+        {
+            LocalSetRemoteShapeType("Cylinder Shape");
+            LocalSetRemoteColor(Color.yellow);
+            updateShape = false;
         }
     }
 
-    public ShapeType GetShapeType()
+    public IEnumerator SetModelParameters(string prefabName, Color color)
     {
-        return localShapeType;
+        yield return new WaitForSeconds(0.1f);
+        LocalSetRemoteShapeType(prefabName);
+        LocalSetRemoteColor(color);
     }
 
-    public void SetShapeType(string prefabName)
+    public void CreateRemoteShape(ShapeType shapeType, Color color)
+    {
+        if (shape == null)
+            shape = remoteShapeManager.CreateRemoteShape(shapeType);
+        RemoteSetLocalColor(color);
+    }
+
+    public void RemoteSetLocalShapeType(ShapeType shapeType)
+    {
+        ShapeType = shapeType;
+    }
+
+    public void RemoteSetLocalColor(Color color)
+    {
+        Color = color;
+        if (shape == null) return;
+        shape.GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
+    }
+
+    public void LocalSetRemoteShapeType(string prefabName)
     {
         ShapeType shapeType = remoteShapeManager.prefabNameToShapeType(prefabName);
-        localShapeType = shapeType;
-        shapeSync.SetShape(localShapeType);
+        ShapeType = shapeType;
+        shapeSync.SetShape(ShapeType);
     }
 
-    public void SetShapeType(ShapeType shapeType)
+    public void LocalSetRemoteColor(Color color)
     {
-        localShapeType = shapeType;
-    }
-
-    public void SetColor(Color color)
-    {
-        localColor = color;
-        shapeSync.SetColor(localColor);
-    }
-
-    public Color GetColor()
-    {
-        return localColor;
+        Color = color;
+        shapeSync.SetColor(Color);
     }
 
     private void UpdateShapeTransform()
@@ -79,19 +106,5 @@ public class SyncRealtimeToShape : MonoBehaviour
         if (shape == null) return;
         transform.SetLocalPositionAndRotation(shape.transform.localPosition, shape.transform.localRotation);
         transform.localScale = shape.transform.localScale;
-    }
-
-    public void UpdateLocalColor(Color color)
-    {
-        localColor = color;
-        if (shape == null) return;
-        shape.GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.SetColor("_Color", color);
-    }
-
-    public void CreateShape(ShapeType shapeType, Color color)
-    {
-        if (shape == null)
-            shape = remoteShapeManager.CreateRemoteShape(shapeType);
-        UpdateLocalColor(color);
     }
 }

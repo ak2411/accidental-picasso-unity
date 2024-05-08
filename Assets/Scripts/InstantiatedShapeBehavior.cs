@@ -38,8 +38,7 @@ public class InstantiatedShapeBehavior : MonoBehaviour
             instantiateOptions.useInstance = _realtime;
             realtimeCounterpart = Realtime.Instantiate("RealtimeShape", instantiateOptions);
             realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
-            realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetColor(GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color"));
-            realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetShapeType(gameObject.name);
+            StartCoroutine(realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetModelParameters(gameObject.name, GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color")));
             realtimeCounterpart.GetComponent<RealtimeTransform>().RequestOwnership();
         }
     }
