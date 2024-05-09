@@ -23,7 +23,6 @@ public class SyncRealtimeToShape : MonoBehaviour
     }
     private RemoteShapeManager remoteShapeManager;
     private ShapeSync shapeSync;
-    public bool updateShape = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -46,12 +45,6 @@ public class SyncRealtimeToShape : MonoBehaviour
             {
                 CreateRemoteShape(ShapeType, Color);
             }
-        }
-        if(updateShape)
-        {
-            LocalSetRemoteShapeType("Cylinder Shape");
-            LocalSetRemoteColor(Color.yellow);
-            updateShape = false;
         }
     }
 
