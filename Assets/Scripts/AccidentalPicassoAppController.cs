@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour
+public class AccidentalPicassoAppController : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static AccidentalPicassoAppController Instance;
 
     public GamePlayerController gamePlayerController;
     public GameController gameController;
@@ -17,6 +17,16 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void CreateRoom()
+    {
+
+    }
+
+    public void JoinRoom()
+    {
+
     }
 
 }
