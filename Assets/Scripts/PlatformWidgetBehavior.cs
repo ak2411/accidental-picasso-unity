@@ -7,6 +7,7 @@ using Oculus.Interaction.HandGrab;
 public class PlatformWidgetBehavior : MonoBehaviour
 {
     private IInteractableView InteractableView { get; set; }
+    [SerializeField]
     private Vector3 hoverLocalScale = new Vector3(0.1f, 0.1f, 0.1f);
     private Vector3 originalLocalScale;
     private Color widgetColor;

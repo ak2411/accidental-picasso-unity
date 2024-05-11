@@ -19,6 +19,11 @@ public class GameController : MonoBehaviour
     private TextMeshProUGUI countdownText;
     public bool startGame = false;
 
+    public void SetOrigin()
+    {
+        transform.SetPositionAndRotation(AccidentalPicassoAppController.Instance.originPosition, AccidentalPicassoAppController.Instance.originRotation);
+    }
+
     private void StartGame()
     {
         countdown = 60.0f; // 1 min
@@ -37,7 +42,7 @@ public class GameController : MonoBehaviour
 
     protected void Update()
     {
-        if(startGame)
+        if (startGame)
         {
             StartGame();
             startGame = false;
