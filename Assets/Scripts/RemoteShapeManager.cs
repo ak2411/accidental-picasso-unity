@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Oculus.Interaction;
 
 public class RemoteShapeManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class RemoteShapeManager : MonoBehaviour
     {
         GameObject primitiveRef = getShapePrimitive(shapeType);
         GameObject remotePrimitive = GameObject.Instantiate(primitiveRef);
+        remotePrimitive.GetComponent<Grabbable>().enabled = false; //disallow local user to interact with remote shape
         remotePrimitive.transform.SetParent(null, false);
         return remotePrimitive;
     }

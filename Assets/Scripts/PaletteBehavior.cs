@@ -76,6 +76,7 @@ namespace AccidentalPicasso.UI.Palette
                     {
                         // Add replacement
                         GameObject replacementPrimitive = Instantiate(primitive.gameObject);
+                        replacementPrimitive.GetComponent<ShapeMenuItemBehavior>().enabled = true;
                         replacementPrimitive.GetComponent<ShapeMenuItemBehavior>().UpdateColor(selectedColor);
                         replacementPrimitive.name = primitive.name;
                         replacementPrimitive.transform.SetParent(_primitivesContainer, false);
