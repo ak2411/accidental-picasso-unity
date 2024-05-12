@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
     public void SetOrigin()
     {
-        transform.SetPositionAndRotation(AccidentalPicassoAppController.Instance.anchorPosition, AccidentalPicassoAppController.Instance.anchorRotation);
+        //transform.SetPositionAndRotation(AccidentalPicassoAppController.Instance.anchorPosition, AccidentalPicassoAppController.Instance.anchorRotation);
     }
 
     private void StartGame()

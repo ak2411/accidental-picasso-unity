@@ -29,7 +29,6 @@ public class AvatarsManager : MonoBehaviour
 
     public void AlignCameraToAnchor()
     {
-        Debug.Log("STILL BEING CALLED");
         var cameraRigTransform = FindObjectOfType<OVRCameraRig>().transform;
         cameraRigTransform.position = fakeAnchor.InverseTransformPoint(Vector3.zero);
         cameraRigTransform.eulerAngles = new Vector3(0, -fakeAnchor.eulerAngles.y, 0);

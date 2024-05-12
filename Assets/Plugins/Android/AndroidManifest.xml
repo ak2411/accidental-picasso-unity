@@ -20,10 +20,7 @@
   <uses-feature android:name="oculus.software.handtracking" android:required="false" />
   <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
   <uses-permission android:name="com.oculus.permission.USE_ANCHOR_API" />
-  <uses-permission android:name="com.oculus.permission.USE_SCENE" />
-  <uses-permission android:name="com.oculus.permission.IMPORT_EXPORT_IOT_MAP_DATA" android:required="true" />
   <uses-feature android:name="com.oculus.feature.PASSTHROUGH" android:required="false" />
   <uses-feature android:name="com.oculus.feature.RENDER_MODEL" />
   <uses-permission android:name="com.oculus.permission.RENDER_MODEL" />
-  <uses-feature android:name="com.oculus.feature.VIRTUAL_KEYBOARD" android:required="true" />
 </manifest>

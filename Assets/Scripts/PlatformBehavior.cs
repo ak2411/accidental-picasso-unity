@@ -25,8 +25,14 @@ public class PlatformBehavior : MonoBehaviour
     {
         // Using the platformId, update the appropriate material
         // Update button colors
-        setOwnerButton = GetChildGameObject(transform, "Set Owner Button", true);
-        registeredUserIcon = GetChildGameObject(transform, "Registered User", true);
+        if(!setOwnerButton)
+        {
+            setOwnerButton = GetChildGameObject(transform, "Set Owner Button", true);
+        }
+        if(!registeredUserIcon)
+        {
+            registeredUserIcon = GetChildGameObject(transform, "Registered User", true);
+        }
         gamePlayerController = FindObjectOfType<GamePlayerController>();
     }
 
@@ -41,13 +47,19 @@ public class PlatformBehavior : MonoBehaviour
 
     public void ConnectWithLocalUser()
     {
-        Debug.Log("called user set " + owner);
         if (owner != null || gamePlayerController.isPlaying) return;
         owner = gamePlayerController.userID;
-        Debug.Log("set user " + owner);
         registeredUserIcon.SetActive(true);
         setOwnerButton.SetActive(false);
         gamePlayerController.SetPlatformSelected(gameObject);
+    }
+
+    public void ConnectWithRemoteUser(string userID)
+    {
+        if (owner != null || gamePlayerController.isPlaying) return;
+        owner = userID;
+        registeredUserIcon.SetActive(true);
+        setOwnerButton.SetActive(false);
     }
 
     public GameObject GetChildGameObject(Transform parent, string name, bool includeInactive)

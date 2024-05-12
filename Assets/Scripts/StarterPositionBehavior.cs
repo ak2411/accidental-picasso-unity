@@ -19,7 +19,8 @@ public class StarterPositionBehavior : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         var cameraTransform = centerEye.transform;
-        var starterPos = cameraTransform.position + cameraTransform.forward * starterOffset.z + cameraTransform.up * starterOffset.y;
-        this.transform.position = starterPos;
+        //var starterPos = cameraTransform.position + cameraTransform.forward * starterOffset.z + cameraTransform.up * starterOffset.y;
+        //this.transform.position = starterPos;
+        this.transform.position += cameraTransform.forward * starterOffset.z;
     }
 }

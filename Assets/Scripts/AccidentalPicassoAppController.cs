@@ -16,12 +16,9 @@ public class AccidentalPicassoAppController : MonoBehaviour
 
     public GamePlayerController gamePlayerController;
     public GameController gameController;
-    public Vector3 anchorPosition;
-    public Quaternion anchorRotation;
-    public Vector3 localUserPosition;
-    public Quaternion localUserRotation;
     public string RoomName;
     public Realtime Realtime;
+    public bool isOwner = false;
 
     private void Awake()
     {
@@ -54,6 +51,7 @@ public class AccidentalPicassoAppController : MonoBehaviour
         }
         RoomName = _roomName.text;
         _message.text = "Entering " + RoomName + "...";
+        isOwner = true;
         LoadGame();
     }
 
@@ -78,13 +76,6 @@ public class AccidentalPicassoAppController : MonoBehaviour
 
     private void LoadGame()
     {
-        //var starterTransform = GameObject.Find("Starter").transform;
-        //anchorPosition = starterTransform.position;
-        ////anchorPosition = new Vector3(starterTransform.position.x, 0.0f, starterTransform.position.z);
-        //anchorRotation = starterTransform.rotation;
-        //var cameraRigTransform = GameObject.Find("CenterEyeAnchor").transform;
-        //localUserPosition = starterTransform.InverseTransformPoint(cameraRigTransform.position);
-        //localUserRotation = Quaternion.Inverse(anchorRotation) * cameraRigTransform.rotation;
         SceneManager.LoadScene("GameScene");
     }
 
@@ -115,8 +106,6 @@ public class AccidentalPicassoAppController : MonoBehaviour
 
     private void OnConnectToRoom(Realtime realtime)
     {
-        //gameController.SetOrigin();
         _message.text = "Connected";
-        //FindObjectOfType<AvatarsManager>().AlignCameraToAnchor();
     }
 }
