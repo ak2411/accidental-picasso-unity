@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour
     private TMP_Text countdownText;
     [SerializeField]
     private Countdown realtimeCountdown;
+    [SerializeField]
+    private GameObject startButton;
+    [SerializeField]
+    private TMP_Text header;
     public bool startGame = false;
 
     private void Awake()
@@ -35,6 +39,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         currentRound += 1;
+        startButton.SetActive(false);
         countdownText.gameObject.SetActive(true);
         gameState = GameState.Start;
         if(realtimeCountdown.time <= 0)
@@ -46,9 +51,12 @@ public class GameController : MonoBehaviour
     private void EndRound()
     {
         gameState = GameState.End;
+        header.text = "Time's up! Vote for each sculpture";
         if(currentRound < numOfRounds)
         {
             // Show next round
+            startButton.SetActive(true);
+            countdownText.gameObject.SetActive(false);
         }
     }
 
