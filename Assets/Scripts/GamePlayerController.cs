@@ -7,6 +7,8 @@ public class GamePlayerController : MonoBehaviour
     public string userID;
     public GameObject platformSelected;
     public bool isPlaying = false;
+    [SerializeField]
+    private GameObject palette;
 
     public void SetPlatformSelected(GameObject platform)
     {
@@ -27,7 +29,6 @@ public class GamePlayerController : MonoBehaviour
 
     private void TogglePalette(bool active)
     {
-        GameObject palette = GameObject.Find("Palette");
         Debug.Log("===palette===" + palette);
         foreach (Transform child in palette.transform)
         {

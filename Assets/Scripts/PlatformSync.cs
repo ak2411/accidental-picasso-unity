@@ -5,8 +5,39 @@ using Normal.Realtime;
 
 public class PlatformSync : RealtimeComponent<PlatformModel>
 {
-    public void UpdateUserID(string userID)
+    private PlatformBehavior _platformBehavior;
+
+    private void Awake()
     {
-        model.owner = userID;
+        _platformBehavior = GetComponent<PlatformBehavior>();
+    }
+
+    public void SendUpdateUserID(string userID)
+    {
+        Debug.Log("updated user id");
+        model.userID = userID;
+    }
+
+    protected override void OnRealtimeModelReplaced(PlatformModel previousModel, PlatformModel currentModel)
+    {
+        if(previousModel != null)
+        {
+            previousModel.userIDDidChange -= OnReceiveUserIDUpdate;
+        }
+        if(currentModel != null)
+        {
+            if (currentModel.isFreshModel)
+            {
+                currentModel.userID = "";
+            }
+            currentModel.userIDDidChange += OnReceiveUserIDUpdate;
+        }
+        
+    }
+
+    private void OnReceiveUserIDUpdate(PlatformModel model, string value)
+    {
+        Debug.Log("called");
+        _platformBehavior.ConnectWithRemoteUser(value);
     }
 }

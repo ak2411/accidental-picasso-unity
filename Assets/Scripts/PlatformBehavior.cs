@@ -4,7 +4,8 @@ using UnityEngine;
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using System.Linq;
-
+using Normal.Realtime;
+using TMPro;
 public enum PlatformType
 {
     Red, Green, Blue, Orange
@@ -19,6 +20,11 @@ public class PlatformBehavior : MonoBehaviour
     private GameObject setOwnerButton;
     [SerializeField]
     private GameObject registeredUserIcon;
+    [SerializeField]
+    private PlatformSync _platformSync;
+    [SerializeField]
+    private RealtimeView _realtimeView;
+
     public bool connect;
     private GamePlayerController gamePlayerController;
     protected void Awake()
@@ -48,18 +54,28 @@ public class PlatformBehavior : MonoBehaviour
     public void ConnectWithLocalUser()
     {
         if (owner != null || gamePlayerController.isPlaying) return;
+        _realtimeView.RequestOwnership();
+        _platformSync.SendUpdateUserID(gamePlayerController.userID);
         owner = gamePlayerController.userID;
-        registeredUserIcon.SetActive(true);
-        setOwnerButton.SetActive(false);
+        UpdateDisplay(true);
         gamePlayerController.SetPlatformSelected(gameObject);
     }
 
     public void ConnectWithRemoteUser(string userID)
     {
-        if (owner != null || gamePlayerController.isPlaying) return;
+        if (owner != null) return;
         owner = userID;
-        registeredUserIcon.SetActive(true);
-        setOwnerButton.SetActive(false);
+        UpdateDisplay(true);
+    }
+
+    private void UpdateDisplay(bool hasUser)
+    {
+        registeredUserIcon.SetActive(hasUser);
+        if(hasUser)
+        {
+            registeredUserIcon.GetComponentInChildren<TMP_Text>().text = owner;
+        }
+        setOwnerButton.SetActive(!hasUser);
     }
 
     public GameObject GetChildGameObject(Transform parent, string name, bool includeInactive)

@@ -107,5 +107,21 @@ public class AccidentalPicassoAppController : MonoBehaviour
     private void OnConnectToRoom(Realtime realtime)
     {
         _message.text = "Connected";
+        if(AccidentalPicassoAppController.Instance.isOwner)
+        {
+            InstantiatePlatforms();
+        }
+    }
+
+    private void InstantiatePlatforms()
+    {
+        Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+        instantiateOptions.ownedByClient = true;
+        instantiateOptions.preventOwnershipTakeover = false;
+        instantiateOptions.useInstance = AccidentalPicassoAppController.Instance.Realtime;
+        Realtime.Instantiate("Red Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Orange Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Blue Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Green Platform Variant", instantiateOptions);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Normal.Realtime;
 
 public enum GameState
 {
@@ -44,6 +45,7 @@ public class GameController : MonoBehaviour
     {
         if (startGame)
         {
+            Coba();
             StartGame();
             startGame = false;
         }
@@ -71,5 +73,17 @@ public class GameController : MonoBehaviour
         float timeRemaining = countdown + 1;
 
         countdownText.text = string.Format("{0:00}", timeRemaining);
+    }
+
+    private void Coba()
+    {
+        Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+        instantiateOptions.ownedByClient = true;
+        instantiateOptions.preventOwnershipTakeover = false;
+        instantiateOptions.useInstance = FindObjectOfType<Realtime>();
+        Realtime.Instantiate("Red Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Orange Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Blue Platform Variant", instantiateOptions);
+        Realtime.Instantiate("Green Platform Variant", instantiateOptions);
     }
 }

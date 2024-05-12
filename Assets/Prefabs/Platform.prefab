@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7645717261277907026}
   - component: {fileID: 7244169139605908768}
-  - component: {fileID: 7089929677326662219}
-  - component: {fileID: 4894251982515094862}
+  - component: {fileID: 6189618174117017588}
+  - component: {fileID: 5828146250236394929}
+  - component: {fileID: 4655183430675998341}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -52,8 +53,9 @@ MonoBehaviour:
   platformId: 0
   setOwnerButton: {fileID: 0}
   registeredUserIcon: {fileID: 0}
+  _platformSync: {fileID: 0}
   connect: 0
---- !u!114 &7089929677326662219
+--- !u!114 &6189618174117017588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,9 +76,29 @@ MonoBehaviour:
   _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
-    component: {fileID: 0}
+    component: {fileID: 5828146250236394929}
+  - componentID: 2
+    component: {fileID: 4655183430675998341}
   _childViews: []
---- !u!114 &4894251982515094862
+--- !u!114 &5828146250236394929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584592112123474439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1029778088, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolate: 1
+  _syncPosition: 1
+  _syncRotation: 1
+  _syncScale: 1
+  _syncVelocity: 1
+  _maintainOwnershipWhileSleeping: 0
+--- !u!114 &4655183430675998341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
