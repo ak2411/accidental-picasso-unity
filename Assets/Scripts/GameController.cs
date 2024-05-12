@@ -17,19 +17,30 @@ public class GameController : MonoBehaviour
     private int currentRound = 0;
     private GameState gameState = GameState.Idle;
     [SerializeField]
-    private TextMeshProUGUI countdownText;
+    private TMP_Text countdownText;
+    [SerializeField]
+    private Countdown realtimeCountdown;
     public bool startGame = false;
 
-    public void SetOrigin()
+    private void Awake()
     {
-        //transform.SetPositionAndRotation(AccidentalPicassoAppController.Instance.anchorPosition, AccidentalPicassoAppController.Instance.anchorRotation);
+        realtimeCountdown.OnTimerStarted += StartGame;
     }
 
-    private void StartGame()
+    private void OnDestroy()
     {
-        countdown = 60.0f; // 1 min
+        realtimeCountdown.OnTimerStarted -= StartGame;
+    }
+
+    public void StartGame()
+    {
         currentRound += 1;
+        countdownText.gameObject.SetActive(true);
         gameState = GameState.Start;
+        if(realtimeCountdown.time <= 0)
+        {
+            realtimeCountdown.StartCountdown(60.0f);
+        }
     }
 
     private void EndRound()
@@ -45,7 +56,6 @@ public class GameController : MonoBehaviour
     {
         if (startGame)
         {
-            Coba();
             StartGame();
             startGame = false;
         }
@@ -55,35 +65,15 @@ public class GameController : MonoBehaviour
     {
         if(gameState == GameState.Start)
         {
+            countdown = realtimeCountdown.time;
             if(countdown > 0)
             {
-                countdown -= Time.fixedDeltaTime;
-                UpdateCountdown();
+                countdownText.text = string.Format("{0:00}", countdown);
             }
             if (countdown <= 0)
             {
                 EndRound();
             }
         }
-    }
-
-    private void UpdateCountdown()
-    { 
-        // reference: https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
-        float timeRemaining = countdown + 1;
-
-        countdownText.text = string.Format("{0:00}", timeRemaining);
-    }
-
-    private void Coba()
-    {
-        Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
-        instantiateOptions.ownedByClient = true;
-        instantiateOptions.preventOwnershipTakeover = false;
-        instantiateOptions.useInstance = FindObjectOfType<Realtime>();
-        Realtime.Instantiate("Red Platform Variant", instantiateOptions);
-        Realtime.Instantiate("Orange Platform Variant", instantiateOptions);
-        Realtime.Instantiate("Blue Platform Variant", instantiateOptions);
-        Realtime.Instantiate("Green Platform Variant", instantiateOptions);
     }
 }
