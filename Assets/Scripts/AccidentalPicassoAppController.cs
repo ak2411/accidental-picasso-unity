@@ -16,12 +16,12 @@ public class AccidentalPicassoAppController : MonoBehaviour
 
     public GamePlayerController gamePlayerController;
     public GameController gameController;
-    public Vector3 originPosition;
-    public Quaternion originRotation;
+    public Vector3 anchorPosition;
+    public Quaternion anchorRotation;
+    public Vector3 localUserPosition;
+    public Quaternion localUserRotation;
     public string RoomName;
     public Realtime Realtime;
-    public Vector3 userPosition;
-    public Quaternion userRotation;
 
     private void Awake()
     {
@@ -72,18 +72,19 @@ public class AccidentalPicassoAppController : MonoBehaviour
     private void ConnectToRoom(string roomName)
     {
         Realtime.Connect(roomName);
+        Realtime.didConnectToRoom += OnConnectToRoom;
         _message.text = "Connecting to "+RoomName+"...";
     }
 
     private void LoadGame()
     {
-        var starterTransform = GameObject.Find("Starter").transform;
-        originPosition = starterTransform.position;
-        originRotation = starterTransform.rotation;
-        var _cameraRig = FindObjectOfType<OVRCameraRig>().transform;
-        userPosition = _cameraRig.position;
-        userRotation = _cameraRig.rotation;
-        Debug.Log("getting pos" + AccidentalPicassoAppController.Instance.userPosition + AccidentalPicassoAppController.Instance.userRotation);
+        //var starterTransform = GameObject.Find("Starter").transform;
+        //anchorPosition = starterTransform.position;
+        ////anchorPosition = new Vector3(starterTransform.position.x, 0.0f, starterTransform.position.z);
+        //anchorRotation = starterTransform.rotation;
+        //var cameraRigTransform = GameObject.Find("CenterEyeAnchor").transform;
+        //localUserPosition = starterTransform.InverseTransformPoint(cameraRigTransform.position);
+        //localUserRotation = Quaternion.Inverse(anchorRotation) * cameraRigTransform.rotation;
         SceneManager.LoadScene("GameScene");
     }
 
@@ -103,9 +104,6 @@ public class AccidentalPicassoAppController : MonoBehaviour
         Realtime = FindObjectOfType<Realtime>();
         gameController = FindObjectOfType<GameController>();
         _message = GameObject.Find("Message").GetComponent<TMP_Text>();
-        var _cameraRig = FindObjectOfType<OVRCameraRig>();
-        Debug.Log("setting pos" + AccidentalPicassoAppController.Instance.userPosition + AccidentalPicassoAppController.Instance.userRotation);
-        _cameraRig.transform.SetPositionAndRotation(AccidentalPicassoAppController.Instance.userPosition, AccidentalPicassoAppController.Instance.userRotation);
         ConnectToRoom(RoomName);
     }
 
@@ -115,4 +113,10 @@ public class AccidentalPicassoAppController : MonoBehaviour
         _message = GameObject.Find("Message").GetComponent<TMP_Text>();
     }
 
+    private void OnConnectToRoom(Realtime realtime)
+    {
+        //gameController.SetOrigin();
+        _message.text = "Connected";
+        //FindObjectOfType<AvatarsManager>().AlignCameraToAnchor();
+    }
 }

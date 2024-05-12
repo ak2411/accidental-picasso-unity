@@ -20,7 +20,7 @@ public class DebugDisplay : MonoBehaviour
 
     void HandleLog(string logString, string stackTrace, LogType type)
     {
-        if(type == LogType.Log)
+        if(type == LogType.Error)
         {
             display.text += logString;
         }
