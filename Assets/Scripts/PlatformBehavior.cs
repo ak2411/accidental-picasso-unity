@@ -31,11 +31,11 @@ public class PlatformBehavior : MonoBehaviour
     {
         // Using the platformId, update the appropriate material
         // Update button colors
-        if(!setOwnerButton)
+        if (!setOwnerButton)
         {
             setOwnerButton = GetChildGameObject(transform, "Set Owner Button", true);
         }
-        if(!registeredUserIcon)
+        if (!registeredUserIcon)
         {
             registeredUserIcon = GetChildGameObject(transform, "Registered User", true);
         }
@@ -44,7 +44,7 @@ public class PlatformBehavior : MonoBehaviour
 
     protected void Update()
     {
-        if(connect)
+        if (connect)
         {
             ConnectWithLocalUser();
             connect = false;
@@ -53,10 +53,11 @@ public class PlatformBehavior : MonoBehaviour
 
     public void ConnectWithLocalUser()
     {
-        if (owner.Length != 0) return;
+        if (owner.Length != 0 || gamePlayerController.platformSelected != null) return;
         _realtimeView.RequestOwnership();
         _platformSync.SendUpdateUserID(gamePlayerController.userID);
         owner = gamePlayerController.userID;
+        registeredUserIcon.GetComponentInChildren<TMP_Text>().text = "YOU!";
         UpdateDisplay(true);
         gamePlayerController.SetPlatformSelected(gameObject);
     }
@@ -71,10 +72,6 @@ public class PlatformBehavior : MonoBehaviour
     private void UpdateDisplay(bool hasUser)
     {
         registeredUserIcon.SetActive(hasUser);
-        if(hasUser)
-        {
-            registeredUserIcon.GetComponentInChildren<TMP_Text>().text = owner;
-        }
         setOwnerButton.SetActive(!hasUser);
     }
 

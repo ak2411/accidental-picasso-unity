@@ -39,19 +39,6 @@ public class VoteBehavior : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        AccidentalPicassoAppController.Instance.OnReset += Reset;
-    }
-
-    public void Reset()
-    {
-        foreach(var panel in panels)
-        {
-            panel.GetComponent<VotePanelBehavior>().voted = false;
-        }
-    }
-
     public void ToggleMenu(bool visible)
     {
         if (!visible && _menuParent.activeSelf)

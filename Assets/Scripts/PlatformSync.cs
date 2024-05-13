@@ -16,6 +16,11 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
         AccidentalPicassoAppController.Instance.OnReset += ResetScore;
     }
 
+    private void OnDestroy()
+    {
+        AccidentalPicassoAppController.Instance.OnReset -= ResetScore;
+    }
+
     public void ResetScore()
     {
         if(model.score != "0-0")
@@ -26,13 +31,11 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
 
     public void SendUpdateUserID(string userID)
     {
-        Debug.Log("updated user id");
         model.userID = userID;
     }
 
     public void UpdateVote(int score)
     {
-        Debug.Log("called udpate votes");
         string[] parts = model.score.Split('-');
         int numOfVotes = int.Parse(parts[0]) + 1;
         int currScore = int.Parse(parts[1]) + score;
@@ -62,13 +65,11 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
 
     private void OnReceiveUserIDUpdate(PlatformModel _, string value)
     {
-        Debug.Log("called");
         _platformBehavior.ConnectWithRemoteUser(value);
     }
 
     private void OnScoreDidChange(PlatformModel _, string value)
     {
-        Debug.Log("score did change" + model.score);
         string[] parts = value.Split('-');
         int numOfVotes = int.Parse(parts[0]);
         int currScore = int.Parse(parts[1]);

@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
 
     private void OnDestroy()
     {
+        AccidentalPicassoAppController.Instance.OnReset -= ResetStillLife;
+        AccidentalPicassoAppController.Instance.OnReset -= ResetShapes;
         realtimeCountdown.OnTimerStarted -= StartGame;
     }
 
