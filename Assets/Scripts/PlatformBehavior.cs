@@ -13,9 +13,9 @@ public enum PlatformType
 
 public class PlatformBehavior : MonoBehaviour
 {
-    private string owner;
+    public string owner;
     [SerializeField]
-    private PlatformType platformId;
+    public PlatformType platformId;
     [SerializeField]
     private GameObject setOwnerButton;
     [SerializeField]
@@ -53,7 +53,7 @@ public class PlatformBehavior : MonoBehaviour
 
     public void ConnectWithLocalUser()
     {
-        if (owner != null || gamePlayerController.isPlaying) return;
+        if (owner.Length != 0) return;
         _realtimeView.RequestOwnership();
         _platformSync.SendUpdateUserID(gamePlayerController.userID);
         owner = gamePlayerController.userID;
@@ -63,7 +63,7 @@ public class PlatformBehavior : MonoBehaviour
 
     public void ConnectWithRemoteUser(string userID)
     {
-        if (owner != null) return;
+        if (owner.Length != 0) return;
         owner = userID;
         UpdateDisplay(true);
     }

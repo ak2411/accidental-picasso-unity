@@ -21,6 +21,7 @@ public class RemoteShapeManager : MonoBehaviour
         GameObject remotePrimitive = GameObject.Instantiate(primitiveRef);
         remotePrimitive.GetComponent<Grabbable>().enabled = false; //disallow local user to interact with remote shape
         remotePrimitive.transform.SetParent(null, false);
+        AccidentalPicassoAppController.Instance.gameController.remoteShapes.Add(remotePrimitive);
         return remotePrimitive;
     }
 

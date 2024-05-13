@@ -14,6 +14,7 @@ public class ButtonBehavior : MonoBehaviour
     private Color hoverColor;
     [SerializeField]
     private UnityEvent WhenSelect;
+    public bool pressButton;
 
     private IInteractableView InteractableView { get; set; }
     protected bool _started = false;
@@ -29,6 +30,15 @@ public class ButtonBehavior : MonoBehaviour
         this.AssertField(InteractableView, nameof(InteractableView));
         this.AssertField(cubeRenderer, nameof(Renderer));
         this.EndStart(ref _started);
+    }
+
+    private void Update()
+    {
+        if(pressButton)
+        {
+            WhenSelect.Invoke();
+            pressButton = false;
+        }
     }
 
     protected virtual void OnEnable()

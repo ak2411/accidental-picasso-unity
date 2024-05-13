@@ -7,4 +7,6 @@ public partial class PlatformModel
 {
     [RealtimeProperty(1, true, true)]
     private string _userID;
+    [RealtimeProperty(2, true, true)]
+    private string _score;
 }

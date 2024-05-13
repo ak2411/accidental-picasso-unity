@@ -49,10 +49,6 @@ namespace AccidentalPicasso.UI.Palette
                 Primitive createdPrimitive = new Primitive(primitive.name, primitive.gameObject, primitive.transform.localPosition, primitive.transform.localRotation);
                 primitiveReferences.Add(createdPrimitive);
             }
-            if (AccidentalPicassoAppController.Instance.isOwner)
-            {
-                _paletteMessage.text = "You are the host! Please press start when all members have chosen a platform.";
-            }
         }
 
         protected void Start()

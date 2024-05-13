@@ -4,6 +4,7 @@ using TMPro;
 using Normal.Realtime;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class AccidentalPicassoAppController : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class AccidentalPicassoAppController : MonoBehaviour
     public string RoomName;
     public Realtime Realtime;
     public bool isOwner = false;
+
+    public delegate void ResetHandler();
+    public event ResetHandler OnReset;
 
     private void Awake()
     {
@@ -53,6 +57,11 @@ public class AccidentalPicassoAppController : MonoBehaviour
         _message.text = "Entering " + RoomName + "...";
         isOwner = true;
         LoadGame();
+    }
+
+    public void Reset()
+    {
+        AccidentalPicassoAppController.Instance.OnReset();
     }
 
     public void JoinRoom()
@@ -94,6 +103,7 @@ public class AccidentalPicassoAppController : MonoBehaviour
     {
         Realtime = FindObjectOfType<Realtime>();
         gameController = FindObjectOfType<GameController>();
+        gamePlayerController = FindObjectOfType<GamePlayerController>();
         _message = GameObject.Find("Message").GetComponent<TMP_Text>();
         ConnectToRoom(RoomName);
     }

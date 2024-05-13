@@ -20,6 +20,7 @@
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AccidentalPicasso.UI.Palette
 {
@@ -42,13 +43,14 @@ namespace AccidentalPicasso.UI.Palette
 
 
         [SerializeField]
-        private Vector3 _leftAnchorPoint = new Vector3(-0.0608603321f, 0.00953984447f, 0.000258127693f);
+        private Vector3 _leftAnchorPoint = new Vector3(0f, 0.01f, 0.12f);
 
         [SerializeField]
         private Vector3 _rightAnchorPoint = new Vector3(0.0652603358f, -0.011439844f, -0.00455812784f);
 
         private IHand LeftHand { get; set; }
         private IHand RightHand { get; set; }
+
 
         protected virtual void Awake()
         {
@@ -75,9 +77,11 @@ namespace AccidentalPicasso.UI.Palette
                 if(angleToCamera <= 60.0f)
                 {
                     GetComponent<PaletteBehavior>().ToggleMenu(true);
+                    GetComponent<VoteBehavior>().ToggleMenu(true);
                 } else
                 {
                     GetComponent<PaletteBehavior>().ToggleMenu(false);
+                    GetComponent<VoteBehavior>().ToggleMenu(false);
                 }
 
             }

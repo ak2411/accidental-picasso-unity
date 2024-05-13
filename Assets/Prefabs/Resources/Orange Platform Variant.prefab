@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: _sceneViewPreventOwnershipTakeover
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6189618174117017588, guid: 992fd9afafe834871a5dc4353e1ccc95, type: 3}
+      propertyPath: _components.Array.data[0].component
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7089929677326662219, guid: 992fd9afafe834871a5dc4353e1ccc95, type: 3}
       propertyPath: _viewUUID
       value: a6f6077e-83e3-412e-97fd-a11d8cccc873
@@ -148,7 +152,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 99347d359da3e4c82af2de7d748f15ec, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5828146250236394929, guid: 992fd9afafe834871a5dc4353e1ccc95, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

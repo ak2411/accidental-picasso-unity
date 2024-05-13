@@ -50,10 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6836322d4d4534c998cf95d9a103a187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: 
   platformId: 0
   setOwnerButton: {fileID: 0}
   registeredUserIcon: {fileID: 0}
   _platformSync: {fileID: 0}
+  _realtimeView: {fileID: 0}
   connect: 0
 --- !u!114 &6189618174117017588
 MonoBehaviour:
