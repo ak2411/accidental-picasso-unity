@@ -76,12 +76,27 @@ namespace AccidentalPicasso.UI.Palette
                 var angleToCamera = Vector3.Angle(handNormal, directionToCamera);
                 if(angleToCamera <= 60.0f)
                 {
-                    GetComponent<PaletteBehavior>().ToggleMenu(true);
-                    GetComponent<VoteBehavior>().ToggleMenu(true);
+                    if(GetComponent<PaletteBehavior>() != null)
+                    {
+                        GetComponent<PaletteBehavior>().ToggleMenu(true);
+                    }
+
+                    if(GetComponent<VoteBehavior>() != null)
+                    {
+                        GetComponent<VoteBehavior>().ToggleMenu(true);
+                    }
+                    
                 } else
                 {
-                    GetComponent<PaletteBehavior>().ToggleMenu(false);
-                    GetComponent<VoteBehavior>().ToggleMenu(false);
+                    if (GetComponent<PaletteBehavior>() != null)
+                    {
+                        GetComponent<PaletteBehavior>().ToggleMenu(false);
+                    }
+
+                    if (GetComponent<VoteBehavior>() != null)
+                    {
+                        GetComponent<VoteBehavior>().ToggleMenu(false);
+                    }
                 }
 
             }

@@ -539,8 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8638ca392364c43aea144d6b8649de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPressClip: {fileID: 8300000, guid: 8b6794715678f49a89bf131efd3bca50, type: 3}
-  endPressClip: {fileID: 8300000, guid: 2ebe6d134c3754fe6a006c0959f65db0, type: 3}
+  startPressClip: {fileID: 8300000, guid: 4f8e6e05b4403461295c623b3039c806, type: 3}
 --- !u!1 &8244948905143038634
 GameObject:
   m_ObjectHideFlags: 0

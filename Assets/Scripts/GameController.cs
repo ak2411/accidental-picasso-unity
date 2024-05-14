@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     private Dictionary<PlatformType, int> scores = new Dictionary<PlatformType, int>();
 
     public List<GameObject> localShapes = new List<GameObject>();
+    public List<GameObject> realtimeShapes = new List<GameObject>();
     public List<GameObject> remoteShapes = new List<GameObject>();
 
     private void Awake()
@@ -77,6 +78,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         if (!startButton.activeSelf) return; //game has already started
+        AccidentalPicassoAppController.Instance.Reset();
         currentRound += 1;
         Debug.Log("num of rounds" + numOfRounds + currentRound);
         SetupModel(currentRound - 1);
@@ -89,7 +91,7 @@ public class GameController : MonoBehaviour
         if (realtimeCountdown.time <= 0)
         {
             gameSync.UpdateGameState(GameState.Start);
-            realtimeCountdown.StartCountdown(60);
+            realtimeCountdown.StartCountdown(120);
         }
     }
 
@@ -103,6 +105,11 @@ public class GameController : MonoBehaviour
 
     private void ResetShapes()
     {
+        foreach (GameObject shape in realtimeShapes)
+        {
+            Realtime.Destroy(shape);
+        }
+
         foreach (GameObject shape in remoteShapes)
         {
             Destroy(shape);
@@ -193,7 +200,6 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Reset");
             // Show next round
-            AccidentalPicassoAppController.Instance.Reset();
             startButton.SetActive(true);
             countdownText.gameObject.SetActive(false);
         } else

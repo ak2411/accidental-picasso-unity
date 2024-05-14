@@ -690,6 +690,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.b
       value: 0.03529412
       objectReference: {fileID: 0}
@@ -748,6 +752,14 @@ PrefabInstance:
     - target: {fileID: 744430533902720621, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: m_LocalScale.x
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923756957203461931, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 2923756957203461931, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2973820755424107363, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: m_text

@@ -12,11 +12,17 @@ public class InstantiatedShapeBehavior : MonoBehaviour
     private GameObject realtimeCounterpart;
     private Realtime _realtime;
     protected bool _started = false;
+    [SerializeField]
+    private AudioClip startClip;
+    [SerializeField]
+    private AudioClip endClip;
+    private AudioSource audioSource;
     protected virtual void Awake()
     {
         InteractableView = GetComponentInChildren<InteractableGroupView>();
         gamePlayerController = FindObjectOfType<GamePlayerController>();
         _realtime = FindObjectOfType<Realtime>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected virtual void Start()
@@ -37,6 +43,7 @@ public class InstantiatedShapeBehavior : MonoBehaviour
             instantiateOptions.preventOwnershipTakeover = true;
             instantiateOptions.useInstance = _realtime;
             realtimeCounterpart = Realtime.Instantiate("RealtimeShape", instantiateOptions);
+            AccidentalPicassoAppController.Instance.gameController.realtimeShapes.Add(realtimeCounterpart);
             realtimeCounterpart.GetComponent<SyncRealtimeToShape>().shape = gameObject;
             StartCoroutine(realtimeCounterpart.GetComponent<SyncRealtimeToShape>().SetModelParameters(gameObject.name, GetComponentInChildren<MaterialPropertyBlockEditor>().MaterialPropertyBlock.GetColor("_Color")));
             realtimeCounterpart.GetComponent<RealtimeTransform>().RequestOwnership();
@@ -76,6 +83,8 @@ public class InstantiatedShapeBehavior : MonoBehaviour
     }
     private void OnSelect()
     {
+        audioSource.clip = startClip;
+        audioSource.Play();
         if (!gamePlayerController.isPlaying) return;
         
         // check collision
@@ -88,6 +97,7 @@ public class InstantiatedShapeBehavior : MonoBehaviour
 
     private void OnUnselect()
     {
-
+        audioSource.clip = endClip;
+        audioSource.Play();
     }
 }

@@ -242,6 +242,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.g
       value: 0.050980393
       objectReference: {fileID: 0}
@@ -376,6 +380,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.b
       value: 0.03529412
@@ -527,6 +535,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: WhenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3

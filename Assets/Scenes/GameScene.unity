@@ -493,6 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 102443570}
+  - component: {fileID: 102443571}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -517,6 +518,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &102443571
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102443569}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d3c96e0331ed843169dbf219b7a25035, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.296
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &112815464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1616,18 @@ PrefabInstance:
     - target: {fileID: 5078850960452174790, guid: 64e0c8764ddb941ad8b0e1f13d991c6b, type: 3}
       propertyPath: m_Name
       value: Green Platform Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400495383074353353, guid: 64e0c8764ddb941ad8b0e1f13d991c6b, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 8547215342539810009, guid: 64e0c8764ddb941ad8b0e1f13d991c6b, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 8547215342539810009, guid: 64e0c8764ddb941ad8b0e1f13d991c6b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2541,6 +2650,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.b
       value: 0.03529412
       objectReference: {fileID: 0}
@@ -2623,6 +2736,14 @@ PrefabInstance:
     - target: {fileID: 744430533902720621, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: m_LocalScale.x
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923756957203461931, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 2923756957203461931, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2973820755424107363, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: m_text
@@ -3787,9 +3908,10 @@ MonoBehaviour:
   - {fileID: 1497893720}
   - {fileID: 525797922}
   models:
-  - {fileID: 919132149155446097, guid: 15120ffb8c48b480e99605a48bb0b976, type: 3}
   - {fileID: 919132149155446097, guid: 725eee296e3dc40c49f0a2a3dffc5697, type: 3}
+  - {fileID: 919132149155446097, guid: 15120ffb8c48b480e99605a48bb0b976, type: 3}
   localShapes: []
+  realtimeShapes: []
   remoteShapes: []
 --- !u!114 &670673801
 MonoBehaviour:
@@ -5656,6 +5778,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Platform Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6547843625873638128, guid: ecbeb25eb01854b498cac84236cbbef3, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 8399339370615084768, guid: ecbeb25eb01854b498cac84236cbbef3, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 8399339370615084768, guid: ecbeb25eb01854b498cac84236cbbef3, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
@@ -5782,6 +5916,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.b
       value: 0.03529412
@@ -7923,6 +8061,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5096706734785205285, guid: 7b2ca96e88d5a44ffa5e56345fb3ee87, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 5096706734785205285, guid: 7b2ca96e88d5a44ffa5e56345fb3ee87, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563175963048050741, guid: 7b2ca96e88d5a44ffa5e56345fb3ee87, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
     - target: {fileID: 8529070980101534522, guid: 7b2ca96e88d5a44ffa5e56345fb3ee87, type: 3}
       propertyPath: m_Name
       value: Orange Platform Variant
@@ -9227,6 +9377,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 670673799}
     m_Modifications:
+    - target: {fileID: 922919640417286426, guid: 9d4e4564d2f47413c8ce8c49b345a30f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
+    - target: {fileID: 922919640417286426, guid: 9d4e4564d2f47413c8ce8c49b345a30f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486041110682250506, guid: 9d4e4564d2f47413c8ce8c49b345a30f, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ae190121969046f089fc1433bf40f5f, type: 3}
     - target: {fileID: 4334896741136489989, guid: 9d4e4564d2f47413c8ce8c49b345a30f, type: 3}
       propertyPath: m_Name
       value: Red Platform Variant
@@ -10162,6 +10324,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c2d31bb9fab1a478b964204760d8b1e3, type: 3}
     - target: {fileID: 494739293471138619, guid: a72ebe5a9e90f47f092b7c65c153ee57, type: 3}
       propertyPath: hoverColor.b
       value: 0.03529412

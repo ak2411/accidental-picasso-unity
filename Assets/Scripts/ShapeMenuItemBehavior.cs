@@ -16,12 +16,18 @@ namespace AccidentalPicasso.UI.Palette
         private float replacePrimitiveThreshold = 0.03f;
         private bool shouldResetPose = false;
         private bool removedFromMenu = false;
-        private bool isSelected = true;
+        private bool isSelected = false;
+        [SerializeField]
+        private AudioClip startClip;
+        [SerializeField]
+        private AudioClip endClip;
+        private AudioSource audioSource;
 
         protected virtual void Awake()
         {
             paletteBehavior = FindObjectOfType<PaletteBehavior>();
             InteractableView = GetComponentInChildren<InteractableGroupView>();
+            audioSource = GetComponent<AudioSource>();
         }
         protected virtual void Start()
         {
@@ -69,6 +75,8 @@ namespace AccidentalPicasso.UI.Palette
             if (args.NewState == InteractableState.Select)
             {
                 isSelected = true;
+                audioSource.clip = startClip;
+                audioSource.Play();
             }
             if (args.PreviousState == InteractableState.Select && args.NewState != InteractableState.Select)
             {
@@ -82,6 +90,8 @@ namespace AccidentalPicasso.UI.Palette
                 else
                 {
                     shouldResetPose = true;
+                    audioSource.clip = startClip;
+                    audioSource.Play();
                 }
             }
         }

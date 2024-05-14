@@ -8,8 +8,6 @@ public class ColorPokeHandler : MonoBehaviour
 {
     [SerializeField]
     private AudioClip startPressClip;
-    [SerializeField]
-    private AudioClip endPressClip;
     private PokeInteractable pokeInteractable;
     private AudioSource audioSource;
     private PaletteBehavior paletteBehavior;
@@ -56,11 +54,6 @@ public class ColorPokeHandler : MonoBehaviour
                 paletteBehavior.UpdateColor(_color);
                 return;
             case InteractableState.Normal:
-                if(args.PreviousState == InteractableState.Select)
-                {
-                    audioSource.clip = endPressClip;
-                    audioSource.Play();
-                }
                 if (transform.localPosition != startPos && args.PreviousState == InteractableState.Hover)
                 {
                     StartCoroutine(LerpHoverEffect(startPos));
