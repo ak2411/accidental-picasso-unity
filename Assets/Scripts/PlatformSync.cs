@@ -27,6 +27,7 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
         {
             model.score = "0-0";
         }
+        Debug.Log("reset score" + model.score);
     }
 
     public void SendUpdateUserID(string userID)

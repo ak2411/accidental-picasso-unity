@@ -16,7 +16,7 @@ namespace AccidentalPicasso.UI.Palette
         private float replacePrimitiveThreshold = 0.03f;
         private bool shouldResetPose = false;
         private bool removedFromMenu = false;
-        private bool isSelected = false;
+        private bool isSelected = true;
         [SerializeField]
         private AudioClip startClip;
         [SerializeField]

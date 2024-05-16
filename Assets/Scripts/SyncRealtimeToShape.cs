@@ -41,7 +41,7 @@ public class SyncRealtimeToShape : MonoBehaviour
         } else
         {
             UpdateShapeTransform();
-            if(shape == null && Color != Color.gray && ShapeType != ShapeType.Default)
+            if(shape == null && Color != Color.gray && ShapeType != ShapeType.Default && AccidentalPicassoAppController.Instance.gameController.gameObject.GetComponent<GameSync>().State == GameState.Start)
             {
                 CreateRemoteShape(ShapeType, Color);
             }

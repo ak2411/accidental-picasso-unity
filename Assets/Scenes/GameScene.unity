@@ -6290,6 +6290,7 @@ MonoBehaviour:
   greenMaterial: {fileID: 2100000, guid: 1ef92ed89d3c74396998deb66564a4e0, type: 2}
   blueMaterial: {fileID: 2100000, guid: eb213f544c08049de9417a46819f745d, type: 2}
   orangeMaterial: {fileID: 2100000, guid: b43ee5b283e4e4218b8483fafca54566, type: 2}
+  audioSource: {fileID: 47826510}
 --- !u!1 &947962994
 GameObject:
   m_ObjectHideFlags: 0

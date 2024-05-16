@@ -51,12 +51,14 @@ public class GameController : MonoBehaviour
     {
         AccidentalPicassoAppController.Instance.OnReset += ResetStillLife;
         AccidentalPicassoAppController.Instance.OnReset += ResetShapes;
+        AccidentalPicassoAppController.Instance.OnReset += ResetScores;
     }
 
     private void OnDestroy()
     {
         AccidentalPicassoAppController.Instance.OnReset -= ResetStillLife;
         AccidentalPicassoAppController.Instance.OnReset -= ResetShapes;
+        AccidentalPicassoAppController.Instance.OnReset -= ResetScores;
         realtimeCountdown.OnTimerStarted -= StartGame;
     }
 
@@ -91,7 +93,7 @@ public class GameController : MonoBehaviour
         if (realtimeCountdown.time <= 0)
         {
             gameSync.UpdateGameState(GameState.Start);
-            realtimeCountdown.StartCountdown(120);
+            realtimeCountdown.StartCountdown(10);
         }
     }
 
@@ -103,22 +105,30 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void ResetScores()
+    {
+        scores = new Dictionary<PlatformType, int>();
+    }
+
     private void ResetShapes()
     {
         foreach (GameObject shape in realtimeShapes)
         {
             Realtime.Destroy(shape);
         }
+        realtimeShapes = new List<GameObject>();
 
         foreach (GameObject shape in remoteShapes)
         {
             Destroy(shape);
         }
+        remoteShapes = new List<GameObject>();
 
         foreach (GameObject shape in localShapes)
         {
             Destroy(shape);
         }
+        localShapes = new List<GameObject>();
     }
 
     private void SetupModel(int index)
@@ -140,7 +150,7 @@ public class GameController : MonoBehaviour
 
     public void OnVoteUpdate(PlatformType type, int numOfVotes, int score)
     {
-        Debug.Log("update vote log");
+        Debug.Log("update vote log "+type+numOfVotes+score);
         if(numOfVotes == activePlatforms.Count)
         {
             scores[type] = score;
@@ -150,7 +160,6 @@ public class GameController : MonoBehaviour
 
     private void CheckForWinner()
     {
-        
         if(scores.Count == activePlatforms.Count)
         {
             var currMax = 0;
@@ -169,28 +178,31 @@ public class GameController : MonoBehaviour
             }
             else
             {
+                Debug.Log("setting header");
                 switch (winner)
                 {
                     case PlatformType.Red:
                         header.text = "Red won!";
-                        return;
+                        break;
                     case PlatformType.Green:
                         header.text = "Green won!";
-                        return;
+                        break;
                     case PlatformType.Blue:
                         header.text = "Blue won!";
-                        return;
+                        break;
                     case PlatformType.Orange:
                         header.text = "Orange won!";
-                        return;
+                        break;
                 }
             }
+            Debug.Log("calling endround");
             EndRound();
         }
     }
 
     private void EndRound()
     {
+        Debug.Log("Ending round");
         if(gameSync.State != GameState.End)
         {
             gameSync.UpdateGameState(GameState.End);

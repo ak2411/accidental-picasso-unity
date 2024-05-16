@@ -20,6 +20,8 @@ public class VoteBehavior : MonoBehaviour
     private Material blueMaterial;
     [SerializeField]
     private Material orangeMaterial;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private List<GameObject> panels = new List<GameObject>();
     
@@ -35,6 +37,11 @@ public class VoteBehavior : MonoBehaviour
             var platformType = platform.GetComponent<PlatformBehavior>().platformId;
             panel.GetComponent<VotePanelBehavior>().back.GetComponent<MeshRenderer>().material = getMaterial(platformType);
             panel.GetComponent<VotePanelBehavior>().platformRef = platform;
+            ButtonBehavior[] buttons = panel.GetComponentsInChildren<ButtonBehavior>();
+            foreach(ButtonBehavior button in buttons)
+            {
+                button.audioSource = audioSource;
+            }
             panelPosition += offset;
         }
     }

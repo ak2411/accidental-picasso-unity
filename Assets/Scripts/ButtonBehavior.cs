@@ -18,7 +18,7 @@ public class ButtonBehavior : MonoBehaviour
     [SerializeField]
     private AudioClip pressSound;
     [SerializeField]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     private IInteractableView InteractableView { get; set; }
     protected bool _started = false;
