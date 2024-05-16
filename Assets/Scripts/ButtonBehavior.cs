@@ -4,7 +4,6 @@ using UnityEngine;
 using Oculus.Interaction;
 using UnityEngine.Events;
 
-[RequireComponent(typeof (AudioSource))]
 public class ButtonBehavior : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +17,7 @@ public class ButtonBehavior : MonoBehaviour
     public bool pressButton;
     [SerializeField]
     private AudioClip pressSound;
+    [SerializeField]
     private AudioSource audioSource;
 
     private IInteractableView InteractableView { get; set; }
@@ -26,7 +26,10 @@ public class ButtonBehavior : MonoBehaviour
     protected virtual void Awake()
     {
         InteractableView = GetComponent<PokeInteractable>();
-        audioSource = GetComponent<AudioSource>();
+        if(GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     protected virtual void Start()
@@ -41,6 +44,8 @@ public class ButtonBehavior : MonoBehaviour
     {
         if(pressButton)
         {
+            audioSource.clip = pressSound;
+            audioSource.Play();
             WhenSelect.Invoke();
             pressButton = false;
         }
