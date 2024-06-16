@@ -9,18 +9,6 @@ public class VotePanelBehavior : MonoBehaviour
 
     public GameObject platformRef;
 
-    //public bool voted;
-
-    private void Start()
-    {
-        //AccidentalPicassoAppController.Instance.OnReset += ResetVote;
-    }
-
-    //public void ResetVote()
-    //{
-    //    voted = false;
-    //}
-
     public void Vote(int score)
     {
         platformRef.GetComponent<RealtimeView>().RequestOwnership();

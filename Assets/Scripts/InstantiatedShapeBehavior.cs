@@ -36,8 +36,9 @@ public class InstantiatedShapeBehavior : MonoBehaviour
     {
         if (!_realtime.connected)
             return;
-        if(!realtimeCounterpart)
+        if(!realtimeCounterpart && AccidentalPicassoAppController.Instance.gameController.gameObject.GetComponent<GameSync>().State == GameState.Start)
         {
+            Debug.Log("Created realtime counterpart");
             Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
             instantiateOptions.ownedByClient = true;
             instantiateOptions.preventOwnershipTakeover = true;

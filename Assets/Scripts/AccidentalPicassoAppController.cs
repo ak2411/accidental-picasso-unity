@@ -21,8 +21,12 @@ public class AccidentalPicassoAppController : MonoBehaviour
     public Realtime Realtime;
     public bool isOwner = false;
 
-    public delegate void ResetHandler();
-    public event ResetHandler OnReset;
+    public delegate void ResetAtEndHandler();
+    public event ResetAtEndHandler OnResetAtEnd;
+
+    public delegate void ResetAtStartHandler();
+    public event ResetAtStartHandler OnResetAtStart;
+
 
     private void Awake()
     {
@@ -59,10 +63,16 @@ public class AccidentalPicassoAppController : MonoBehaviour
         LoadGame();
     }
 
-    public void Reset()
+    public void ResetAtEnd()
     {
-        AccidentalPicassoAppController.Instance.OnReset();
+        AccidentalPicassoAppController.Instance.OnResetAtEnd();
     }
+
+    public void ResetAtStart()
+    {
+        AccidentalPicassoAppController.Instance.OnResetAtStart();
+    }
+
 
     public void JoinRoom()
     {

@@ -13,12 +13,12 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
     private void Awake()
     {
         _platformBehavior = GetComponent<PlatformBehavior>();
-        AccidentalPicassoAppController.Instance.OnReset += ResetScore;
+        AccidentalPicassoAppController.Instance.OnResetAtStart += ResetScore;
     }
 
     private void OnDestroy()
     {
-        AccidentalPicassoAppController.Instance.OnReset -= ResetScore;
+        AccidentalPicassoAppController.Instance.OnResetAtStart -= ResetScore;
     }
 
     public void ResetScore()
@@ -55,8 +55,12 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
         {
             if (currentModel.isFreshModel)
             {
-                currentModel.userID = "";
+                currentModel.userID = _platformBehavior.owner ?? "";
                 currentModel.score = "0-0";
+            }
+            if (currentModel.userID.Length > 0)
+            {
+                _platformBehavior.ConnectWithRemoteUser(model.userID);
             }
             currentModel.userIDDidChange += OnReceiveUserIDUpdate;
             currentModel.scoreDidChange += OnScoreDidChange;
@@ -66,7 +70,11 @@ public class PlatformSync : RealtimeComponent<PlatformModel>
 
     private void OnReceiveUserIDUpdate(PlatformModel _, string value)
     {
-        _platformBehavior.ConnectWithRemoteUser(value);
+        Debug.Log("on receive userID update");
+        if (value.Length > 0)
+        {
+            _platformBehavior.ConnectWithRemoteUser(value);
+        }
     }
 
     private void OnScoreDidChange(PlatformModel _, string value)

@@ -35,6 +35,10 @@ public class Countdown : RealtimeComponent<CountdownModel>
         }
 
         if (currentModel != null) {
+            if (model.timerEnd > 0)
+            {
+                OnTimerStarted();
+            }
             currentModel.timerEndDidChange += OnTimerEndDidChange;
         }
     }

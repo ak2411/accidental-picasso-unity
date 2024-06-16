@@ -49,16 +49,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        AccidentalPicassoAppController.Instance.OnReset += ResetStillLife;
-        AccidentalPicassoAppController.Instance.OnReset += ResetShapes;
-        AccidentalPicassoAppController.Instance.OnReset += ResetScores;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd += ResetStillLife;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd += ResetShapes;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd += ResetScores;
     }
 
     private void OnDestroy()
     {
-        AccidentalPicassoAppController.Instance.OnReset -= ResetStillLife;
-        AccidentalPicassoAppController.Instance.OnReset -= ResetShapes;
-        AccidentalPicassoAppController.Instance.OnReset -= ResetScores;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd -= ResetStillLife;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd -= ResetShapes;
+        AccidentalPicassoAppController.Instance.OnResetAtEnd -= ResetScores;
         realtimeCountdown.OnTimerStarted -= StartGame;
     }
 
@@ -79,11 +79,12 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("start game called");
         if (!startButton.activeSelf) return; //game has already started
-        AccidentalPicassoAppController.Instance.Reset();
         currentRound += 1;
         Debug.Log("num of rounds" + numOfRounds + currentRound);
         SetupModel(currentRound - 1);
+        AccidentalPicassoAppController.Instance.ResetAtStart();
         startButton.SetActive(false);
         countdownText.gameObject.SetActive(true);
         header.text = "Round " + currentRound;
@@ -93,7 +94,7 @@ public class GameController : MonoBehaviour
         if (realtimeCountdown.time <= 0)
         {
             gameSync.UpdateGameState(GameState.Start);
-            realtimeCountdown.StartCountdown(10);
+            realtimeCountdown.StartCountdown(60);
         }
     }
 
@@ -112,23 +113,24 @@ public class GameController : MonoBehaviour
 
     private void ResetShapes()
     {
-        foreach (GameObject shape in realtimeShapes)
-        {
-            Realtime.Destroy(shape);
-        }
-        realtimeShapes = new List<GameObject>();
-
-        foreach (GameObject shape in remoteShapes)
-        {
-            Destroy(shape);
-        }
-        remoteShapes = new List<GameObject>();
-
         foreach (GameObject shape in localShapes)
         {
             Destroy(shape);
         }
         localShapes = new List<GameObject>();
+
+        foreach (GameObject shape in remoteShapes)
+        {
+            Destroy(shape);
+            Debug.Log("destroyed shape" + shape.name);
+        }
+        remoteShapes = new List<GameObject>();
+
+        foreach (GameObject shape in realtimeShapes)
+        {
+            Realtime.Destroy(shape);
+        }
+        realtimeShapes = new List<GameObject>();
     }
 
     private void SetupModel(int index)
@@ -218,6 +220,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("else case reset");
         }
+        AccidentalPicassoAppController.Instance.ResetAtEnd();
     }
 
     protected void Update()
