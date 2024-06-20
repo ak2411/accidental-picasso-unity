@@ -29,6 +29,10 @@ public class GameController : MonoBehaviour
     private GameObject stillLifeParent;
     [SerializeField]
     private GameObject palette;
+    [SerializeField]
+    private AudioClip timesUpClip;
+    [SerializeField]
+    private AudioClip startClip;
     public bool startGame = false;
     private List<GameObject> activePlatforms = new List<GameObject>();
     [SerializeField]
@@ -36,6 +40,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private List<GameObject> models = new List<GameObject>();
     private Dictionary<PlatformType, int> scores = new Dictionary<PlatformType, int>();
+    private AudioSource audioSource;
 
     public List<GameObject> localShapes = new List<GameObject>();
     public List<GameObject> realtimeShapes = new List<GameObject>();
@@ -45,6 +50,7 @@ public class GameController : MonoBehaviour
     {
         realtimeCountdown.OnTimerStarted += StartGame;
         numOfRounds = models.Count;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -91,10 +97,13 @@ public class GameController : MonoBehaviour
         palette.GetComponent<PaletteUISwitcher>().ActivateGamePalette();
         GetActivePlatforms();
 
+        audioSource.clip = startClip;
+        audioSource.Play();
+
         if (realtimeCountdown.time <= 0)
         {
             gameSync.UpdateGameState(GameState.Start);
-            realtimeCountdown.StartCountdown(60);
+            realtimeCountdown.StartCountdown(120);
         }
     }
 
@@ -148,6 +157,8 @@ public class GameController : MonoBehaviour
         palette.GetComponent<PaletteUISwitcher>().ActivateVotePalette();
         palette.GetComponent<PaletteUISwitcher>().votePalette.GetComponent<VoteBehavior>().CreatePanels(activePlatforms);
         header.text = "Time's up! Vote for each sculpture";
+        audioSource.clip = timesUpClip;
+        audioSource.Play();
     }
 
     public void OnVoteUpdate(PlatformType type, int numOfVotes, int score)
