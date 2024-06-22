@@ -39,6 +39,13 @@ public class GameController : MonoBehaviour
     private List<GameObject> platforms = new List<GameObject>();
     [SerializeField]
     private List<GameObject> models = new List<GameObject>();
+    public int numOfModels
+    {
+        get
+        {
+            return models.Count;
+        }
+    }
     private Dictionary<PlatformType, int> scores = new Dictionary<PlatformType, int>();
     private AudioSource audioSource;
 
@@ -146,6 +153,7 @@ public class GameController : MonoBehaviour
     {
         var newModel = GameObject.Instantiate(models[index], stillLifeParent.transform);
         newModel.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
     }
 
     private void VotingRound()

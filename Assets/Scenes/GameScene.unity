@@ -4051,6 +4051,9 @@ MonoBehaviour:
   models:
   - {fileID: 919132149155446097, guid: 725eee296e3dc40c49f0a2a3dffc5697, type: 3}
   - {fileID: 919132149155446097, guid: 15120ffb8c48b480e99605a48bb0b976, type: 3}
+  - {fileID: 919132149155446097, guid: 0dc93e60a17834b9f814dcc15688daeb, type: 3}
+  - {fileID: 919132149155446097, guid: 9b11dd769935d4f6a98c5137d5a1260a, type: 3}
+  - {fileID: 919132149155446097, guid: e427a52a286ca496f8108974d502afae, type: 3}
   localShapes: []
   realtimeShapes: []
   remoteShapes: []
@@ -4151,6 +4154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0780500ceb04a249ab82dcba4e1f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexes: 
 --- !u!82 &670673806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6814,7 +6818,7 @@ PrefabInstance:
       objectReference: {fileID: 1378574561}
     - target: {fileID: 7459419074827946970, guid: 7b6bfdf4df303fa41864533ddfea8e75, type: 3}
       propertyPath: _joinRoomOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7459419074827946970, guid: 7b6bfdf4df303fa41864533ddfea8e75, type: 3}
       propertyPath: _roomToJoinOnStart
@@ -8678,6 +8682,38 @@ MonoBehaviour:
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
   profilerTcpPort: 32419
+  expandMixedRealityCapturePropertySheet: 0
+  enableMixedReality: 0
+  compositionMethod: 0
+  extraHiddenLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  extraVisibleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  dynamicCullingMask: 1
+  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
+  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
+  capturingCameraDevice: 0
+  flipCameraFrameHorizontally: 0
+  flipCameraFrameVertically: 0
+  handPoseStateLatency: 0
+  sandwichCompositionRenderLatency: 0
+  sandwichCompositionBufferedFrames: 8
+  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
+  chromaKeySimilarity: 0.6
+  chromaKeySmoothRange: 0.03
+  chromaKeySpillRange: 0.06
+  useDynamicLighting: 0
+  depthQuality: 1
+  dynamicLightingSmoothFactor: 8
+  dynamicLightingDepthVariationClampingValue: 0.001
+  virtualGreenScreenType: 0
+  virtualGreenScreenTopY: 10
+  virtualGreenScreenBottomY: -10
+  virtualGreenScreenApplyDepthCulling: 0
+  virtualGreenScreenDepthTolerance: 0.2
+  mrcActivationMode: 0
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   requestBodyTrackingPermissionOnStartup: 0

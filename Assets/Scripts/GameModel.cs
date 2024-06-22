@@ -11,4 +11,6 @@ public partial class GameModel
     private int _numOfPlayers;
     [RealtimeProperty(3, true, true)]
     private int _currRound;
+    [RealtimeProperty(4, true, true)]
+    private string _modelIdxs;
 }
