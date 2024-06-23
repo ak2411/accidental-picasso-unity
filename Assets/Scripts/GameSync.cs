@@ -48,15 +48,9 @@ public class GameSync : RealtimeComponent<GameModel>
         {
             if (currentModel.isFreshModel)
             {
-                Debug.Log("current game ids currentModel before setting" + currentModel.modelIdxs);
-                Debug.Log("current game ids model before setting" + model.modelIdxs);
                 var modelIdxs = GenerateRandomIdxs();
                 currentModel.modelIdxs = modelIdxs;
                 SetIndexes(modelIdxs);
-
-                Debug.Log("current game ids model after setting" + model.modelIdxs);
-                Debug.Log("current game ids currentModel after setting" + currentModel.modelIdxs);
-
             }
             if (currentModel.modelIdxs.Length > 0)
             {
@@ -71,7 +65,6 @@ public class GameSync : RealtimeComponent<GameModel>
     {
         HashSet<int> uniqueIndexes = new HashSet<int>();
         int numOfModels = AccidentalPicassoAppController.Instance.gameController.numOfModels;
-        Debug.Log("num of models" + numOfModels);
         while (uniqueIndexes.Count < ROUNDS)
         {
             int idx = Random.Range(0, numOfModels);

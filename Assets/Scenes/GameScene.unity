@@ -6818,7 +6818,7 @@ PrefabInstance:
       objectReference: {fileID: 1378574561}
     - target: {fileID: 7459419074827946970, guid: 7b6bfdf4df303fa41864533ddfea8e75, type: 3}
       propertyPath: _joinRoomOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7459419074827946970, guid: 7b6bfdf4df303fa41864533ddfea8e75, type: 3}
       propertyPath: _roomToJoinOnStart

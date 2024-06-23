@@ -13,7 +13,7 @@ public enum GameState
 public class GameController : MonoBehaviour
 {
     private float countdown;
-    private int numOfRounds;
+    private int numOfRounds = 3;
     private int currentRound = 0;
     [SerializeField]
     private TMP_Text countdownText;
@@ -56,7 +56,6 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         realtimeCountdown.OnTimerStarted += StartGame;
-        numOfRounds = models.Count;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -151,7 +150,8 @@ public class GameController : MonoBehaviour
 
     private void SetupModel(int index)
     {
-        var newModel = GameObject.Instantiate(models[index], stillLifeParent.transform);
+        var modelIdx = gameSync.indexes[index];
+        var newModel = GameObject.Instantiate(models[modelIdx], stillLifeParent.transform);
         newModel.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
     }
