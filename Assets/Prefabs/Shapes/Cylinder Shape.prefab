@@ -146,14 +146,14 @@ MonoBehaviour:
     _middleRequirement: 1
     _ringRequirement: 0
     _pinkyRequirement: 0
-    _unselectMode: 0
+    _unselectMode: 1
   _palmGrabRules:
     _thumbRequirement: 1
     _indexRequirement: 2
     _middleRequirement: 2
     _ringRequirement: 2
     _pinkyRequirement: 1
-    _unselectMode: 0
+    _unselectMode: 1
   _movementProvider: {fileID: 0}
   _handAligment: 1
   _handGrabPoses: []
@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 6203272804144408244}
   - component: {fileID: -8683517530237874274}
   - component: {fileID: 947208993768846474}
+  - component: {fileID: 648709318024125134}
   m_Layer: 0
   m_Name: Cylinder Shape
   m_TagString: Untagged
@@ -667,6 +668,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &648709318024125134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636513591668300256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1993ad6d615164a0f84bfa77ff6e0a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5763764927855383109
 GameObject:
   m_ObjectHideFlags: 0

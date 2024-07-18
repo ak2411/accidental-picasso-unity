@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 1643737790975466394}
   - component: {fileID: 6939373313201210983}
   - component: {fileID: 5186818776590860077}
+  - component: {fileID: 6367226181379925848}
   m_Layer: 0
   m_Name: Join
   m_TagString: Untagged
@@ -273,6 +274,24 @@ MonoBehaviour:
   cubeRenderer: {fileID: 2774451027056310724}
   originalColor: {r: 0, g: 0.7254902, b: 0.03529412, a: 1}
   hoverColor: {r: 0, g: 1, b: 0.050980393, a: 1}
+  WhenSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  pressButton: 0
+  pressSound: {fileID: 0}
+  audioSource: {fileID: 0}
+--- !u!114 &6367226181379925848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004498323288428284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58229396195ec4645ad14a075f470243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4562137841333905193
 GameObject:
   m_ObjectHideFlags: 0

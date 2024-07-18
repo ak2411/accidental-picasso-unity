@@ -20,12 +20,21 @@ public class AccidentalPicassoAppController : MonoBehaviour
     public string RoomName;
     public Realtime Realtime;
     public bool isOwner = false;
-
+    private bool isUsingSystemGesture = false;
+    public bool IsUsingSystemGesture
+    {
+        get { return isUsingSystemGesture; }
+        set { isUsingSystemGesture = value; }
+    }
+   
     public delegate void ResetAtEndHandler();
     public event ResetAtEndHandler OnResetAtEnd;
 
     public delegate void ResetAtStartHandler();
     public event ResetAtStartHandler OnResetAtStart;
+
+    public delegate void SystemGestureUpdateHandler(bool isUsingGesture);
+    public event SystemGestureUpdateHandler OnSystemGestureUpdate;
 
 
     private void Awake()
@@ -73,6 +82,10 @@ public class AccidentalPicassoAppController : MonoBehaviour
         AccidentalPicassoAppController.Instance.OnResetAtStart();
     }
 
+    public void SystemGestureUpdate()
+    {
+        AccidentalPicassoAppController.Instance.OnSystemGestureUpdate(isUsingSystemGesture);
+    }
 
     public void JoinRoom()
     {
