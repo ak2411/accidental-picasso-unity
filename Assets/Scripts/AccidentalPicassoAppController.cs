@@ -139,6 +139,7 @@ public class AccidentalPicassoAppController : MonoBehaviour
 
     private void OnConnectToRoom(Realtime realtime)
     {
-        _message.text = "Connected";
+        _message.text = "Connected to room: "+ realtime.room.name;
+        
     }
 }
