@@ -863,6 +863,7 @@ GameObject:
   - component: {fileID: 102455036}
   - component: {fileID: 102455037}
   - component: {fileID: 102455038}
+  - component: {fileID: 102455039}
   m_Layer: 0
   m_Name: Starter
   m_TagString: Untagged
@@ -1024,6 +1025,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &102455039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102455032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d306ec7abb494b9ca19310167e71b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &104565046
 GameObject:
   m_ObjectHideFlags: 0
@@ -9737,13 +9750,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeRenderer: {fileID: 1521281616}
-  originalColor: {r: 0, g: 0.7254902, b: 0.03529412, a: 1}
-  hoverColor: {r: 0, g: 1, b: 0.050980393, a: 1}
+  originalColor: {r: 0.40784314, g: 0, b: 0.7254902, a: 1}
+  hoverColor: {r: 0.5621619, g: 0, b: 1, a: 1}
   WhenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 658728475}
-        m_TargetAssemblyTypeName: AccidentalPicassoAppController, Assembly-CSharp
+      - m_Target: {fileID: 102455039}
+        m_TargetAssemblyTypeName: StarterBehavior, Assembly-CSharp
         m_MethodName: CreateRoom
         m_Mode: 1
         m_Arguments:
@@ -12531,6 +12544,38 @@ MonoBehaviour:
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
   profilerTcpPort: 32419
+  expandMixedRealityCapturePropertySheet: 0
+  enableMixedReality: 0
+  compositionMethod: 0
+  extraHiddenLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  extraVisibleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  dynamicCullingMask: 1
+  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
+  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
+  capturingCameraDevice: 0
+  flipCameraFrameHorizontally: 0
+  flipCameraFrameVertically: 0
+  handPoseStateLatency: 0
+  sandwichCompositionRenderLatency: 0
+  sandwichCompositionBufferedFrames: 8
+  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
+  chromaKeySimilarity: 0.6
+  chromaKeySmoothRange: 0.03
+  chromaKeySpillRange: 0.06
+  useDynamicLighting: 0
+  depthQuality: 1
+  dynamicLightingSmoothFactor: 8
+  dynamicLightingDepthVariationClampingValue: 0.001
+  virtualGreenScreenType: 0
+  virtualGreenScreenTopY: 10
+  virtualGreenScreenBottomY: -10
+  virtualGreenScreenApplyDepthCulling: 0
+  virtualGreenScreenDepthTolerance: 0.2
+  mrcActivationMode: 0
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
   requestBodyTrackingPermissionOnStartup: 0
@@ -14980,8 +15025,8 @@ MonoBehaviour:
   WhenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 658728475}
-        m_TargetAssemblyTypeName: AccidentalPicassoAppController, Assembly-CSharp
+      - m_Target: {fileID: 102455039}
+        m_TargetAssemblyTypeName: StarterBehavior, Assembly-CSharp
         m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:

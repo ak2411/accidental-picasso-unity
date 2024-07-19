@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Normal.Realtime;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -14,13 +15,15 @@ public class GameController : MonoBehaviour
 {
     private float countdown;
     private int numOfRounds = 3;
-    private int currentRound = 0;
+    private int currentRound = 0; // 0 is null state, we will increment round before the first round begins
     [SerializeField]
     private TMP_Text countdownText;
     [SerializeField]
     private Countdown realtimeCountdown;
     [SerializeField]
     private GameObject startButton;
+    [SerializeField]
+    private GameObject endedGameButtons;
     [SerializeField]
     private TMP_Text header;
     [SerializeField]
@@ -91,10 +94,8 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("start game called");
         if (!startButton.activeSelf) return; //game has already started
         currentRound += 1;
-        Debug.Log("num of rounds" + numOfRounds + currentRound);
         SetupModel(currentRound - 1);
         AccidentalPicassoAppController.Instance.ResetAtStart();
         startButton.SetActive(false);
@@ -111,6 +112,19 @@ public class GameController : MonoBehaviour
             gameSync.UpdateGameState(GameState.Start);
             realtimeCountdown.StartCountdown(120);
         }
+    }
+
+    public void PlayAgain()
+    {
+        endedGameButtons.SetActive(false);
+        currentRound = 0;
+        startButton.SetActive(true);
+
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("Starter Screen");
     }
 
     public void ResetStillLife()
@@ -137,7 +151,6 @@ public class GameController : MonoBehaviour
         foreach (GameObject shape in remoteShapes)
         {
             Destroy(shape);
-            Debug.Log("destroyed shape" + shape.name);
         }
         remoteShapes = new List<GameObject>();
 
@@ -199,7 +212,6 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                Debug.Log("setting header");
                 switch (winner)
                 {
                     case PlatformType.Red:
@@ -216,14 +228,12 @@ public class GameController : MonoBehaviour
                         break;
                 }
             }
-            Debug.Log("calling endround");
             EndRound();
         }
     }
 
     private void EndRound()
     {
-        Debug.Log("Ending round");
         if(gameSync.State != GameState.End)
         {
             gameSync.UpdateGameState(GameState.End);
@@ -231,13 +241,14 @@ public class GameController : MonoBehaviour
         palette.GetComponent<PaletteUISwitcher>().DisableBoth();
         if (currentRound < numOfRounds)
         {
-            Debug.Log("Reset");
             // Show next round
             startButton.SetActive(true);
             countdownText.gameObject.SetActive(false);
         } else
         {
-            Debug.Log("else case reset");
+            //else case play again
+            endedGameButtons.SetActive(true);
+            countdownText.gameObject.SetActive(false);
         }
         AccidentalPicassoAppController.Instance.ResetAtEnd();
     }

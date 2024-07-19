@@ -74,7 +74,14 @@ namespace AccidentalPicasso.UI.Palette
                 var handToCamera = (Camera.main.transform.position - palmRef.transform.position).normalized;
                 var handNormal = palmRef.transform.up;
                 var angleToCamera = Vector3.Angle(handNormal, directionToCamera);
-                if(angleToCamera <= 60.0f)
+                if (GetComponent<SettingsBehavior>() != null && angleToCamera <= 160.0f)
+                {
+                    GetComponent<SettingsBehavior>().ToggleMenu(false);
+                } else if (GetComponent<SettingsBehavior>() != null && angleToCamera > 160.0f)
+                {
+                    GetComponent<SettingsBehavior>().ToggleMenu(true);
+                }
+                    if (angleToCamera <= 60.0f)
                 {
                     if(GetComponent<PaletteBehavior>() != null)
                     {
@@ -85,7 +92,6 @@ namespace AccidentalPicasso.UI.Palette
                     {
                         GetComponent<VoteBehavior>().ToggleMenu(true);
                     }
-                    
                 } else
                 {
                     if (GetComponent<PaletteBehavior>() != null)
