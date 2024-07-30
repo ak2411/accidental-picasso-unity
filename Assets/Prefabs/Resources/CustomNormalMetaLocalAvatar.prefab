@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5908401962913677109}
   - component: {fileID: 3699169960761619311}
   - component: {fileID: 6303210757653836526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CustomNormalMetaLocalAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3699169960761619311
 MonoBehaviour:
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   MotionSmoothingSettings: 0
-  _hidden: 0
+  _hidden: 1
   useRenderLods: 1
   _isLocal: 1
   _loadUserFromCdn: 1
