@@ -8687,6 +8687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Move Widget
       objectReference: {fileID: 0}
+    - target: {fileID: 8203843166970482049, guid: 1d5ff5ed914264b0683a7ebf4b371dd8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3224873780688947330, guid: 1d5ff5ed914264b0683a7ebf4b371dd8, type: 3}
     m_RemovedGameObjects: []
@@ -12584,7 +12588,7 @@ MonoBehaviour:
   requestScenePermissionOnStartup: 1
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 2
+  _trackingOriginType: 1
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
